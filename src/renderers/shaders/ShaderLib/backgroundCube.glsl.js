@@ -35,15 +35,67 @@ varying vec3 vWorldDirection;
 
 #include <cube_uv_reflection_fragment>
 
+#ifdef ENVMAP_TYPE_CUBE
+
+	#include <cube_face_pars_fragment>
+
+	// The blurred cube map's texels are only a few sigmas wide, bilinear magnification would show its
+	// grid. Cubic B-spline reconstruction: four bilinear taps with the weights folded into the tap positions.
+	vec4 sampleBlurred( vec3 direction ) {
+
+		float size = float( textureSize( envMap, 0 ).x );
+
+		float face = getFace( direction );
+		vec2 uv = getUV( direction, face );
+
+		// texel i has its center at p = i
+		vec2 p = uv * size - 0.5;
+		vec2 i = floor( p );
+		vec2 f = p - i;
+
+		// cubic B-spline weights of texels i - 1 .. i + 2
+		vec2 f2 = f * f;
+		vec2 f3 = f2 * f;
+		vec2 w0 = ( 1.0 - 3.0 * f + 3.0 * f2 - f3 ) / 6.0;
+		vec2 w1 = ( 4.0 - 6.0 * f2 + 3.0 * f3 ) / 6.0;
+		vec2 w2 = ( 1.0 + 3.0 * f + 3.0 * f2 - 3.0 * f3 ) / 6.0;
+		vec2 w3 = f3 / 6.0;
+
+		// pair the taps: one bilinear fetch between i - 1 and i, one between i + 1 and i + 2
+		vec2 s0 = w0 + w1;
+		vec2 s1 = w2 + w3;
+		vec2 t0 = ( i - 0.5 + w1 / s0 ) / size;
+		vec2 t1 = ( i + 1.5 + w3 / s1 ) / size;
+
+		vec4 color = textureCube( envMap, cubeFaceDir( face, vec2( t0.x, t0.y ) ) ) * s0.x * s0.y
+			+ textureCube( envMap, cubeFaceDir( face, vec2( t1.x, t0.y ) ) ) * s1.x * s0.y
+			+ textureCube( envMap, cubeFaceDir( face, vec2( t0.x, t1.y ) ) ) * s0.x * s1.y
+			+ textureCube( envMap, cubeFaceDir( face, vec2( t1.x, t1.y ) ) ) * s1.x * s1.y;
+
+		// the grids of the three faces meeting at a corner disagree within a texel or two, blend to bilinear there
+		vec2 st = abs( 2.0 * uv - 1.0 );
+		float texel = 2.0 / size;
+		float corner = smoothstep( texel, 2.0 * texel, 1.0 - min( st.x, st.y ) );
+
+		if ( corner < 1.0 ) color = mix( textureCube( envMap, direction ), color, corner );
+
+		return color;
+
+	}
+
+#endif
+
 void main() {
+
+	vec3 direction = backgroundRotation * vWorldDirection;
 
 	#ifdef ENVMAP_TYPE_CUBE
 
-		vec4 texColor = textureCube( envMap, backgroundRotation * vWorldDirection );
+		vec4 texColor = backgroundBlurriness > 0.0 ? sampleBlurred( direction ) : textureCube( envMap, direction );
 
 	#elif defined( ENVMAP_TYPE_CUBE_UV )
 
-		vec4 texColor = textureCubeUV( envMap, backgroundRotation * vWorldDirection, backgroundBlurriness );
+		vec4 texColor = textureCubeUV( envMap, direction, 0.0 );
 
 	#else
 

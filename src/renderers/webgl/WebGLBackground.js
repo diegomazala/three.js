@@ -34,8 +34,15 @@ function WebGLBackground( renderer, environments, state, objects, alpha, premult
 
 		if ( background && background.isTexture ) {
 
-			const usePMREM = scene.backgroundBlurriness > 0; // use PMREM if the user wants to blur the background
-			background = environments.get( background, usePMREM );
+			if ( scene.backgroundBlurriness > 0 ) {
+
+				background = environments.getBlurred( background, scene.backgroundBlurriness );
+
+			} else {
+
+				background = environments.get( background );
+
+			}
 
 		}
 

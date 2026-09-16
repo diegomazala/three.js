@@ -3,6 +3,7 @@ import ChainMap from '../ChainMap.js';
 import NodeBuilderState from './NodeBuilderState.js';
 import NodeMaterial from '../../../materials/nodes/NodeMaterial.js';
 import { cubeMapNode } from '../../../nodes/utils/CubeMapNode.js';
+import { cubemapBlurTexture } from '../../../nodes/utils/CubemapBlurNode.js';
 import { NodeFrame, NodeUpdateType, StackTrace } from '../../../nodes/Nodes.js';
 import { renderGroup, cubeTexture, texture, fog, rangeFogFactor, densityFogFactor, reference, pmremTexture, screenUV, uniform } from '../../../nodes/TSL.js';
 import { builtin } from '../../../nodes/accessors/BuiltinNode.js';
@@ -709,29 +710,25 @@ class NodeManager extends DataMap {
 
 			if ( sceneData.background !== background || forceUpdate ) {
 
-				const backgroundNode = this.getCacheNode( 'background', background, () => {
+				const backgroundNode = this.getCacheNode( scene.backgroundBlurriness > 0 ? 'backgroundBlur' : 'background', background, () => {
 
 					if ( background.isCubeTexture === true || ( background.mapping === EquirectangularReflectionMapping || background.mapping === EquirectangularRefractionMapping || background.mapping === CubeUVReflectionMapping ) ) {
 
-						if ( scene.backgroundBlurriness > 0 || background.mapping === CubeUVReflectionMapping ) {
+						if ( scene.backgroundBlurriness > 0 ) {
+
+							return cubemapBlurTexture( background );
+
+						} else if ( background.mapping === CubeUVReflectionMapping ) {
 
 							return pmremTexture( background );
 
+						} else if ( background.isCubeTexture === true ) {
+
+							return cubeMapNode( cubeTexture( background ) );
+
 						} else {
 
-							let envMap;
-
-							if ( background.isCubeTexture === true ) {
-
-								envMap = cubeTexture( background );
-
-							} else {
-
-								envMap = texture( background );
-
-							}
-
-							return cubeMapNode( envMap );
+							return cubeMapNode( texture( background ) );
 
 						}
 
@@ -750,6 +747,12 @@ class NodeManager extends DataMap {
 				sceneData.backgroundNode = backgroundNode;
 				sceneData.background = background;
 				sceneData.backgroundBlurriness = scene.backgroundBlurriness;
+
+			}
+
+			if ( sceneData.backgroundNode && sceneData.backgroundNode.isCubemapBlurNode === true ) {
+
+				sceneData.backgroundNode.blurriness = scene.backgroundBlurriness;
 
 			}
 

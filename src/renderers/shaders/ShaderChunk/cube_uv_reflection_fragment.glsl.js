@@ -1,8 +1,6 @@
 export default /* glsl */`
-#ifdef ENVMAP_TYPE_CUBE_UV
-
-	#define cubeUV_minMipLevel 4.0
-	#define cubeUV_minTileSize 16.0
+// the face lookup also serves the blurred background, which is a cube map
+#if defined( ENVMAP_TYPE_CUBE_UV ) || defined( ENVMAP_TYPE_CUBE )
 
 	// These shader functions convert between the UV coordinates of a single face of
 	// a cubemap, the 0-5 integer index of a cube face, and the direction vector for
@@ -74,6 +72,13 @@ export default /* glsl */`
 		return 0.5 * ( uv + 1.0 );
 
 	}
+
+#endif
+
+#ifdef ENVMAP_TYPE_CUBE_UV
+
+	#define cubeUV_minMipLevel 4.0
+	#define cubeUV_minTileSize 16.0
 
 	vec3 bilinearCubeUV( sampler2D envMap, vec3 direction, float mipInt ) {
 

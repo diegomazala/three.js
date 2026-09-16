@@ -26,7 +26,7 @@ const cubeUV_minTileSize = /*@__PURE__*/ float( 16.0 );
 // a cubemap, the 0-5 integer index of a cube face, and the direction vector for
 // sampling a textureCube (not generally normalized ).
 
-const getFace = /*@__PURE__*/ Fn( ( [ direction ] ) => {
+export const getFace = /*@__PURE__*/ Fn( ( [ direction ] ) => {
 
 	const absDirection = vec3( abs( direction ) ).toVar();
 	const face = float( - 1.0 ).toVar();
@@ -68,7 +68,7 @@ const getFace = /*@__PURE__*/ Fn( ( [ direction ] ) => {
 } );
 
 // RH coordinate system; PMREM face-indexing convention
-const getUV = /*@__PURE__*/ Fn( ( [ direction, face ] ) => {
+export const getUV = /*@__PURE__*/ Fn( ( [ direction, face ] ) => {
 
 	const uv = vec2().toVar();
 

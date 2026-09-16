@@ -23,6 +23,7 @@ import color_pars_vertex from './ShaderChunk/color_pars_vertex.glsl.js';
 import color_vertex from './ShaderChunk/color_vertex.glsl.js';
 import common from './ShaderChunk/common.glsl.js';
 import cube_uv_reflection_fragment from './ShaderChunk/cube_uv_reflection_fragment.glsl.js';
+import cube_face_pars_fragment from './ShaderChunk/cube_face_pars_fragment.glsl.js';
 import defaultnormal_vertex from './ShaderChunk/defaultnormal_vertex.glsl.js';
 import displacementmap_pars_vertex from './ShaderChunk/displacementmap_pars_vertex.glsl.js';
 import displacementmap_vertex from './ShaderChunk/displacementmap_vertex.glsl.js';
@@ -151,6 +152,7 @@ export const ShaderChunk = {
 	color_vertex: color_vertex,
 	common: common,
 	cube_uv_reflection_fragment: cube_uv_reflection_fragment,
+	cube_face_pars_fragment: cube_face_pars_fragment,
 	defaultnormal_vertex: defaultnormal_vertex,
 	displacementmap_pars_vertex: displacementmap_pars_vertex,
 	displacementmap_vertex: displacementmap_vertex,
