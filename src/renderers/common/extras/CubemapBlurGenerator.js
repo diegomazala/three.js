@@ -12,7 +12,6 @@ import { cubeTexture } from '../../../nodes/accessors/CubeTextureNode.js';
 import { pmremTexture } from '../../../nodes/pmrem/PMREMNode.js';
 import { positionWorldDirection } from '../../../nodes/accessors/Position.js';
 import { equirectUV } from '../../../nodes/utils/EquirectUV.js';
-import { cubeFaceDir } from '../../../nodes/utils/CubeFace.js';
 import { Fn, float, vec2, vec3, vec4 } from '../../../nodes/tsl/TSLBase.js';
 import { abs, acos, atan, clamp, cross, dot, exp, inverseSqrt, normalize, sqrt, dFdx, dFdy } from '../../../nodes/math/MathNode.js';
 import { select } from '../../../nodes/math/ConditionalNode.js';
@@ -358,13 +357,18 @@ function _createSpherePass() {
 		const color = vec3( 0.0 ).toVar();
 		const weightSum = float( 0.0 ).toVar();
 
-		// every texel of the source level, weighted by the Gaussian of its angle and its solid angle
+		// every texel of the source level, weighted by the Gaussian of its angle and its solid angle,
+		// the face orientation does not matter for a sum over all of them
 		Loop( 6 * n * n, ( { i: t } ) => {
 
 			const face = t.div( n * n ).toVar();
 			const texel = t.sub( face.mul( n * n ) ).toVar();
 
-			const d = cubeFaceDir( float( face ), vec2( float( texel.mod( n ) ), float( texel.div( n ) ) ).add( 0.5 ).div( n ) ).toVar();
+			const st = vec2( float( texel.mod( n ) ), float( texel.div( n ) ) ).add( 0.5 ).div( n ).mul( 2.0 ).sub( 1.0 ).toVar();
+			const s = select( face.mod( 2 ).equal( 0 ), 1.0, - 1.0 );
+			const axis = face.div( 2 );
+
+			const d = select( axis.equal( 0 ), vec3( s, st ), select( axis.equal( 1 ), vec3( st.x, s, st.y ), vec3( st, s ) ) ).toVar();
 			const r2 = dot( d, d ).toVar();
 
 			const theta = acos( clamp( dot( direction, d.mul( inverseSqrt( r2 ) ) ), - 1.0, 1.0 ) );

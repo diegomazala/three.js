@@ -373,7 +373,6 @@ function _createSphereMaterial() {
 	}, /* glsl */`
 
 		#include <common>
-		#include <cube_face_pars_fragment>
 
 		uniform samplerCube envMap;
 		uniform float sigma;
@@ -389,13 +388,18 @@ function _createSphereMaterial() {
 			vec3 color = vec3( 0.0 );
 			float weightSum = 0.0;
 
-			// every texel of the source level, weighted by the Gaussian of its angle and its solid angle
+			// every texel of the source level, weighted by the Gaussian of its angle and its solid angle,
+			// the face orientation does not matter for a sum over all of them
 			for ( int t = 0; t < 6 * SIZE * SIZE; t ++ ) {
 
 				int face = t / ( SIZE * SIZE );
 				int texel = t - face * SIZE * SIZE;
 
-				vec3 d = cubeFaceDir( float( face ), ( vec2( float( texel % SIZE ), float( texel / SIZE ) ) + 0.5 ) / float( SIZE ) );
+				vec2 st = ( vec2( float( texel % SIZE ), float( texel / SIZE ) ) + 0.5 ) / float( SIZE ) * 2.0 - 1.0;
+				float s = face % 2 == 0 ? 1.0 : - 1.0;
+				int axis = face / 2;
+
+				vec3 d = axis == 0 ? vec3( s, st ) : axis == 1 ? vec3( st.x, s, st.y ) : vec3( st, s );
 				float r2 = dot( d, d );
 
 				float theta = acos( clamp( dot( direction, d * inversesqrt( r2 ) ), - 1.0, 1.0 ) );

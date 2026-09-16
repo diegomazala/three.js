@@ -1,16 +1,36 @@
 import TempNode from '../core/TempNode.js';
 import { NodeUpdateType } from '../core/constants.js';
-import { nodeProxy, float, vec2, Fn, If } from '../tsl/TSLBase.js';
+import { nodeProxy, float, vec2, vec3, Fn, If } from '../tsl/TSLBase.js';
 import { cubeTexture } from '../accessors/CubeTextureNode.js';
 import { textureSize } from '../accessors/TextureSizeNode.js';
 import { positionWorldDirection } from '../accessors/Position.js';
-import { abs, floor, min, mix, smoothstep } from '../math/MathNode.js';
+import { abs, clamp, floor, max, min, mix, smoothstep } from '../math/MathNode.js';
+import { select } from '../math/ConditionalNode.js';
 import { getFace, getUV } from '../pmrem/PMREMUtils.js';
-import { cubeFaceDir } from './CubeFace.js';
 import { CubeTexture } from '../../textures/CubeTexture.js';
 import CubemapBlurGenerator from '../../renderers/common/extras/CubemapBlurGenerator.js';
 
 const _cache = new WeakMap();
+
+// Direction (not normalized) of face coordinates in the getUV convention that may lie past the face
+// edge. The texel grid continues into the neighbouring face at the same texel index along the edge, so
+// coordinates past the edge land on the neighbour's texel centers rather than on the extrapolated face plane.
+const cubeFaceDir = /*@__PURE__*/ Fn( ( [ face, uv ] ) => {
+
+	const st = uv.mul( 2.0 ).sub( 1.0 ).toVar();
+	const over = min( max( abs( st ).sub( 1.0 ), 0.0 ), 0.75 );
+	st.assign( clamp( st, - 1.0, 1.0 ).div( over.x.oneMinus().mul( over.y.oneMinus() ) ) );
+
+	const d0 = vec3( 1.0, st.y, st.x );
+	const d1 = vec3( st.x.negate(), 1.0, st.y.negate() );
+	const d2 = vec3( st.x.negate(), st.y, 1.0 );
+	const d3 = vec3( - 1.0, st.y, st.x.negate() );
+	const d4 = vec3( st.x.negate(), - 1.0, st.y );
+	const d5 = vec3( st.x, st.y, - 1.0 );
+
+	return select( face.lessThan( 0.5 ), d0, select( face.lessThan( 1.5 ), d1, select( face.lessThan( 2.5 ), d2, select( face.lessThan( 3.5 ), d3, select( face.lessThan( 4.5 ), d4, d5 ) ) ) ) );
+
+} );
 
 /**
  * Returns the per-renderer generator and cache of blurred cube maps. Render target
