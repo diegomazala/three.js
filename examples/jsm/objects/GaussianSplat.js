@@ -96,7 +96,7 @@ class GaussianSplat extends Mesh {
 	/**
 	 * Constructs a new Gaussian splat mesh.
 	 *
-	 * @param {BufferGeometry} splatGeometry - The splat geometry to render. Higher-order spherical harmonics attributes must use packed `Uint32Array` words from {@link createGaussianSplatGeometry} (`SH_BAND_WORDS[ degree ]` words per splat, four clamped-byte coefficients per word).
+	 * @param {BufferGeometry} splatGeometry - The splat geometry to render. Higher-order spherical harmonics attributes must use packed `Uint32Array` words from {@link createGaussianSplatGeometry} (`SH_BAND_WORDS[ degree ]` words per splat, four clamped-byte coefficients per word). Decoded coefficients are multiplied by the geometry's `userData.sphericalHarmonicsScales` when present.
 	 * @param {Object} [options] - Options.
 	 * @param {boolean} [options.autoSort=true] - Whether to sort automatically in `onBeforeRender`.
 	 */
@@ -114,6 +114,7 @@ class GaussianSplat extends Mesh {
 		const geometry = createGeometry( count );
 		const buffers = createStorageBuffers( count, positionAttribute.array, covarianceAttribute.array, colorAttribute.array, {
 			degree: sphericalHarmonicsDegree,
+			scales: splatGeometry.userData.sphericalHarmonicsScales,
 			sh1: sphericalHarmonicsDegree >= 1 ? splatGeometry.getAttribute( 'sphericalHarmonics1' ).array : undefined,
 			sh2: sphericalHarmonicsDegree >= 2 ? splatGeometry.getAttribute( 'sphericalHarmonics2' ).array : undefined,
 			sh3: sphericalHarmonicsDegree >= 3 ? splatGeometry.getAttribute( 'sphericalHarmonics3' ).array : undefined
@@ -664,9 +665,27 @@ function createStorageBuffers( count, centers, covariances, colors, sphericalHar
 	const covarianceBAttribute = new StorageBufferAttribute( covarianceBData, 4 );
 	const colorAttribute = new StorageBufferAttribute( colorData, 1 );
 
+	const requestedScales = sphericalHarmonics.scales;
+	const sphericalHarmonicsScales = [ 1, 1, 1 ];
+
+	if ( Array.isArray( requestedScales ) ) {
+
+		for ( let i = 0; i < 3; i ++ ) {
+
+			if ( typeof requestedScales[ i ] === 'number' && requestedScales[ i ] > 0 ) {
+
+				sphericalHarmonicsScales[ i ] = requestedScales[ i ];
+
+			}
+
+		}
+
+	}
+
 	const buffers = {
 		count,
 		sphericalHarmonicsDegree,
+		sphericalHarmonicsScales,
 		webGLBuffersEnabled: false,
 		centerRead: storage( centerAttribute, 'vec4', count ).toReadOnly(),
 		covarianceARead: storage( covarianceAAttribute, 'vec4', count ).toReadOnly(),
@@ -809,7 +828,7 @@ function applySphericalHarmonics( rgb, center, localCameraPosition, splatIndex, 
 			z.mul( 0.4886025 ),
 			x.mul( - 0.4886025 )
 		]
-	) );
+	).mul( buffers.sphericalHarmonicsScales[ 0 ] ) );
 
 	if ( buffers.sphericalHarmonicsDegree >= 2 ) {
 
@@ -830,7 +849,7 @@ function applySphericalHarmonics( rgb, center, localCameraPosition, splatIndex, 
 				x.mul( z ).mul( - 1.0925484 ),
 				xx.sub( yy ).mul( 0.5462742 )
 			]
-		) );
+		).mul( buffers.sphericalHarmonicsScales[ 1 ] ) );
 
 		if ( buffers.sphericalHarmonicsDegree >= 3 ) {
 
@@ -851,7 +870,7 @@ function applySphericalHarmonics( rgb, center, localCameraPosition, splatIndex, 
 					z.mul( xx.sub( yy ) ).mul( 1.4453057 ),
 					x.mul( xx.sub( yy.mul( 3 ) ) ).mul( - 0.5900436 )
 				]
-			) );
+			).mul( buffers.sphericalHarmonicsScales[ 2 ] ) );
 
 		}
 

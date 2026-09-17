@@ -176,12 +176,15 @@ function getSphericalHarmonicsDegree( geometry ) {
  * Creates Gaussian splat geometry from packed attribute arrays. Higher-order
  * spherical harmonics must be supplied as packed `Uint32Array` words
  * (`SH_BAND_WORDS[ degree ]` words per splat, four clamped-byte coefficients
- * per word using `( value - 128 ) / 128`).
+ * per word using `( value - 128 ) / 128`). An optional per-band `sh<N>Scale`
+ * multiplies decoded coefficients, so bytes can be packed relative to the
+ * data's actual range instead of the full `[-1, 1]` domain. Scales are stored
+ * on `geometry.userData.sphericalHarmonicsScales`.
  *
  * @param {Float32Array} centers - Splat centers.
  * @param {Float32Array} covariances - Splat covariance matrices.
  * @param {Uint8Array|Uint8ClampedArray} colors - RGBA colors.
- * @param {Object} [sphericalHarmonics={}] - Optional packed SH band arrays.
+ * @param {Object} [sphericalHarmonics={}] - Optional packed SH band arrays and scales.
  * @return {BufferGeometry} The Gaussian splat geometry.
  */
 function createGaussianSplatGeometry( centers, covariances, colors, sphericalHarmonics = {} ) {
@@ -204,6 +207,18 @@ function createGaussianSplatGeometry( centers, covariances, colors, sphericalHar
 		}
 
 	}
+
+	const scales = [ 1, 1, 1 ];
+
+	for ( let i = 1; i <= 3; i ++ ) {
+
+		const scale = sphericalHarmonics[ `sh${ i }Scale` ];
+
+		if ( typeof scale === 'number' && scale > 0 ) scales[ i - 1 ] = scale;
+
+	}
+
+	geometry.userData.sphericalHarmonicsScales = scales;
 
 	getSphericalHarmonicsDegree( geometry );
 	geometry.computeBoundingBox();

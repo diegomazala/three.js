@@ -291,11 +291,13 @@ function convertPLYGeometry( geometry ) {
 	const sphericalHarmonicsDegree = getRestSphericalHarmonicsDegree( shRest );
 	const sphericalHarmonics = {};
 	const sphericalHarmonicsBytes = {};
+	const bandScales = computeRestBandScales( shRest, sphericalHarmonicsDegree );
 
 	for ( let degree = 1; degree <= sphericalHarmonicsDegree; degree ++ ) {
 
 		const band = createPackedSphericalHarmonicsBand( count, degree );
 		sphericalHarmonics[ `sh${ degree }` ] = band.packed;
+		sphericalHarmonics[ `sh${ degree }Scale` ] = bandScales[ degree - 1 ];
 		sphericalHarmonicsBytes[ `sh${ degree }` ] = band.bytes;
 
 	}
@@ -329,7 +331,7 @@ function convertPLYGeometry( geometry ) {
 
 		if ( sphericalHarmonicsDegree > 0 ) {
 
-			writeSphericalHarmonicsFromRest( sphericalHarmonicsBytes, i, shRest );
+			writeSphericalHarmonicsFromRest( sphericalHarmonicsBytes, i, shRest, bandScales );
 
 		}
 
@@ -355,7 +357,57 @@ function getRestSphericalHarmonicsDegree( shRest ) {
 
 }
 
-function writeSphericalHarmonicsFromRest( sphericalHarmonicsBytes, index, shRest ) {
+// Per-band max |coefficient|, so bytes pack the file's actual range rather
+// than the full [-1, 1] domain.
+function computeRestBandScales( shRest, sphericalHarmonicsDegree ) {
+
+	const scales = [ 1, 1, 1 ];
+
+	if ( sphericalHarmonicsDegree === 0 ) return scales;
+
+	const stride = shRest.itemSize / 3;
+	const source = shRest.array;
+	const count = shRest.count;
+	const maxima = [ 0, 0, 0 ];
+
+	for ( let i = 0; i < count; i ++ ) {
+
+		const sourceOffset = i * shRest.itemSize;
+
+		for ( let degree = 1; degree <= sphericalHarmonicsDegree; degree ++ ) {
+
+			const bandOffset = degree === 1 ? 0 : degree === 2 ? 3 : 8;
+			const coefficients = SH_BAND_COMPONENTS[ degree ] / 3;
+
+			for ( let channel = 0; channel < 3; channel ++ ) {
+
+				const channelOffset = sourceOffset + channel * stride + bandOffset;
+
+				for ( let c = 0; c < coefficients; c ++ ) {
+
+					const value = Math.abs( source[ channelOffset + c ] );
+
+					if ( Number.isFinite( value ) && value > maxima[ degree - 1 ] ) maxima[ degree - 1 ] = value;
+
+				}
+
+			}
+
+		}
+
+	}
+
+	for ( let band = 0; band < 3; band ++ ) {
+
+		if ( maxima[ band ] > 0 ) scales[ band ] = maxima[ band ];
+
+	}
+
+	return scales;
+
+}
+
+function writeSphericalHarmonicsFromRest( sphericalHarmonicsBytes, index, shRest, bandScales ) {
 
 	const stride = shRest.itemSize / 3;
 	const source = shRest.array;
@@ -370,12 +422,13 @@ function writeSphericalHarmonicsFromRest( sphericalHarmonicsBytes, index, shRest
 		const bandOffset = degree === 1 ? 0 : degree === 2 ? 3 : 8;
 		const byteStride = SH_BAND_WORDS[ degree ] * 4;
 		const targetOffset = index * byteStride;
+		const scale = bandScales[ degree - 1 ];
 
 		for ( let j = 0; j < SH_BAND_COMPONENTS[ degree ]; j ++ ) {
 
 			const coefficient = Math.floor( j / 3 );
 			const channel = j % 3;
-			target[ targetOffset + j ] = source[ sourceOffset + bandOffset + coefficient + channel * stride ] * 128 + 128;
+			target[ targetOffset + j ] = ( source[ sourceOffset + bandOffset + coefficient + channel * stride ] / scale ) * 128 + 128;
 
 		}
 
