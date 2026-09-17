@@ -366,24 +366,28 @@ function _createSpherePass() {
 		const color = vec3( 0.0 ).toVar();
 		const weightSum = float( 0.0 ).toVar();
 
-		// every texel of the source level, weighted by the Gaussian of its angle and its solid angle,
-		// the face orientation does not matter for a sum over all of them
-		Loop( 6 * n * n, ( { i: t } ) => {
+		// Every source texel, paired with its antipode to share the angle and solid angle calculation.
+		Loop( 3 * n * n, ( { i: t } ) => {
 
-			const face = t.div( n * n ).toVar();
-			const texel = t.sub( face.mul( n * n ) ).toVar();
+			const axis = t.div( n * n ).toVar();
+			const texel = t.sub( axis.mul( n * n ) ).toVar();
 
 			const st = vec2( float( texel.mod( n ) ), float( texel.div( n ) ) ).add( 0.5 ).div( n ).mul( 2.0 ).sub( 1.0 ).toVar();
-			const s = select( face.mod( 2 ).equal( 0 ), 1.0, - 1.0 );
-			const axis = face.div( 2 );
 
-			const d = select( axis.equal( 0 ), vec3( s, st ), select( axis.equal( 1 ), vec3( st.x, s, st.y ), vec3( st, s ) ) ).toVar();
+			const d = select( axis.equal( 0 ), vec3( 1.0, st ), select( axis.equal( 1 ), vec3( st.x, 1.0, st.y ), vec3( st, 1.0 ) ) ).toVar();
 			const r2 = dot( d, d ).toVar();
+			const solidAngle = inverseSqrt( r2.mul( r2 ).mul( r2 ) ).toVar();
 
-			const theta = acos( clamp( dot( direction, d.mul( inverseSqrt( r2 ) ) ), - 1.0, 1.0 ) );
-			const weight = exp( k.mul( theta.mul( theta ) ) ).mul( inverseSqrt( r2.mul( r2 ).mul( r2 ) ) ).toVar();
+			const theta = acos( clamp( dot( direction, d.mul( inverseSqrt( r2 ) ) ), - 1.0, 1.0 ) ).toVar();
+			const weight = exp( k.mul( theta.mul( theta ) ) ).mul( solidAngle ).toVar();
 
 			color.addAssign( envMap.sample( d ).level( level ).rgb.mul( weight ) );
+			weightSum.addAssign( weight );
+
+			theta.assign( float( Math.PI ).sub( theta ) );
+			weight.assign( exp( k.mul( theta.mul( theta ) ) ).mul( solidAngle ) );
+
+			color.addAssign( envMap.sample( d.negate() ).level( level ).rgb.mul( weight ) );
 			weightSum.addAssign( weight );
 
 		} );
