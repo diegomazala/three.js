@@ -49,7 +49,9 @@ import {
 	getSphericalHarmonicsDegree
 } from '../utils/GaussianSplatUtils.js';
 
-const BIN_COUNT = 4096;
+const MIN_BIN_COUNT = 4096;
+const MAX_BIN_COUNT = 262144;
+const SPLATS_PER_BIN = 100;
 const WORKGROUP_SIZE = 256;
 const SORT_DIRECTION_THRESHOLD = 0.9995;
 const KERNEL_2D_SIZE = 0.3;
@@ -76,6 +78,26 @@ const _mOriginOffset = /*@__PURE__*/ new Vector3();
 const _vector = /*@__PURE__*/ new Vector3();
 
 /**
+ * Splats landing in the same depth bin are drawn in an order unrelated to their depth, so
+ * the bin count has to grow with the splat count or large scenes visibly reorder as the
+ * camera turns. The upper bound reflects the cost of the sort's serial prefix scan, which
+ * runs as a single invocation over the bins, and applies to a requested count as well.
+ *
+ * @param {number} count - The number of splats.
+ * @param {number} [requested] - A requested bin count. Ignored unless it is a positive integer.
+ * @return {number} The number of depth bins to sort into.
+ */
+function resolveSortBinCount( count, requested ) {
+
+	const bins = Number.isInteger( requested ) && requested > 0
+		? requested
+		: 2 ** Math.ceil( Math.log2( Math.max( count / SPLATS_PER_BIN, 1 ) ) );
+
+	return Math.min( Math.max( bins, MIN_BIN_COUNT ), MAX_BIN_COUNT );
+
+}
+
+/**
  * A minimal renderer for 3D Gaussian splat geometry.
  *
  * Note that this class can only be used with {@link WebGPURenderer}. The
@@ -99,8 +121,9 @@ class GaussianSplat extends Mesh {
 	 * @param {BufferGeometry} splatGeometry - The splat geometry to render. Higher-order spherical harmonics attributes must use packed `Uint32Array` words from {@link createGaussianSplatGeometry} (`SH_BAND_WORDS[ degree ]` words per splat, four clamped-byte coefficients per word).
 	 * @param {Object} [options] - Options.
 	 * @param {boolean} [options.autoSort=true] - Whether to sort automatically in `onBeforeRender`.
+	 * @param {number} [options.sortBinCount] - The number of depth bins the sort quantizes into, clamped to `[4096, 262144]`. Defaults to one bin per 100 splats. A non-integer or non-positive value is ignored.
 	 */
-	constructor( splatGeometry, { autoSort = true } = {} ) {
+	constructor( splatGeometry, { autoSort = true, sortBinCount } = {} ) {
 
 		const positionAttribute = splatGeometry.getAttribute( 'position' );
 		const covarianceAttribute = splatGeometry.getAttribute( 'covariance' );
@@ -120,7 +143,8 @@ class GaussianSplat extends Mesh {
 		} );
 		const localCameraPosition = uniform( new Vector3() );
 		const sphericalHarmonicsComputeNode = createSphericalHarmonicsComputeNode( buffers, localCameraPosition );
-		const sort = new CountingSort( count, { binCount: BIN_COUNT, workgroupSize: WORKGROUP_SIZE } );
+		const binCount = resolveSortBinCount( count, sortBinCount );
+		const sort = new CountingSort( count, { binCount, workgroupSize: WORKGROUP_SIZE } );
 		const materialNodes = createMaterialNodes( buffers, sort, localCameraPosition );
 		const material = createMaterial( materialNodes.vertexNode, materialNodes.fragmentNode );
 
@@ -193,9 +217,9 @@ class GaussianSplat extends Mesh {
 			const depth = viewCenter.z.negate().toVar( 'depth' );
 			const range = max( sortDepthRange.y.sub( sortDepthRange.x ), 0.0001 ).toVar( 'range' );
 			const normalized = depth.sub( sortDepthRange.x ).div( range ).clamp( 0, 1 ).toVar( 'normalized' );
-			const depthBin = uint( normalized.mul( BIN_COUNT - 1 ) ).toVar( 'depthBin' );
+			const depthBin = uint( normalized.mul( binCount - 1 ) ).toVar( 'depthBin' );
 
-			return uint( BIN_COUNT - 1 ).sub( depthBin );
+			return uint( binCount - 1 ).sub( depthBin );
 
 		} );
 
@@ -470,15 +494,16 @@ class GaussianSplat extends Mesh {
 		const matrix = this._sortMatrix.value.elements;
 		const nearDepth = this._sortDepthRange.value.x;
 		const range = Math.max( this._sortDepthRange.value.y - nearDepth, 0.0001 );
-		const scale = ( BIN_COUNT - 1 ) / range;
+		const binCount = this._sort.binCount;
+		const scale = ( binCount - 1 ) / range;
 
 		this._sort.computeCPU( ( i ) => {
 
 			const i3 = i * 3;
 			const depth = - ( matrix[ 2 ] * centers[ i3 ] + matrix[ 6 ] * centers[ i3 + 1 ] + matrix[ 10 ] * centers[ i3 + 2 ] + matrix[ 14 ] );
-			const depthBin = Math.min( BIN_COUNT - 1, Math.max( 0, Math.floor( ( depth - nearDepth ) * scale ) ) );
+			const depthBin = Math.min( binCount - 1, Math.max( 0, Math.floor( ( depth - nearDepth ) * scale ) ) );
 
-			return BIN_COUNT - 1 - depthBin;
+			return binCount - 1 - depthBin;
 
 		} );
 
