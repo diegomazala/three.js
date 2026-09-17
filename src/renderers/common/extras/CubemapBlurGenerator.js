@@ -12,7 +12,7 @@ import { cubeTexture } from '../../../nodes/accessors/CubeTextureNode.js';
 import { pmremTexture } from '../../../nodes/pmrem/PMREMNode.js';
 import { positionWorldDirection } from '../../../nodes/accessors/Position.js';
 import { equirectUV } from '../../../nodes/utils/EquirectUV.js';
-import { Fn, float, vec2, vec3, vec4 } from '../../../nodes/tsl/TSLBase.js';
+import { Fn, If, float, vec2, vec3, vec4 } from '../../../nodes/tsl/TSLBase.js';
 import { abs, acos, atan, clamp, cross, dot, exp, inverseSqrt, normalize, sqrt, dFdx, dFdy } from '../../../nodes/math/MathNode.js';
 import { select } from '../../../nodes/math/ConditionalNode.js';
 import { Loop } from '../../../nodes/utils/LoopNode.js';
@@ -316,7 +316,7 @@ function _createBlurPass() {
 		// bounds keep the compiler from unrolling the loops
 		const range = { start: radius.negate(), end: radius, condition: '<=' };
 
-		Loop( range, range, ( { i, j } ) => {
+		Loop( range, { start: 0, end: radius, condition: '<=' }, ( { i, j } ) => {
 
 			const offset = vec2( float( i ), float( j ) ).mul( spacing ).toVar();
 			const r2 = dot( offset, offset ).toVar();
@@ -328,6 +328,15 @@ function _createBlurPass() {
 
 			color.addAssign( envMap.sample( tap ).level( level ).rgb.mul( weight ) );
 			weightSum.addAssign( weight );
+
+			// Mirrored taps have the same angle and solid angle, so reuse their weight.
+			If( j.greaterThan( 0 ), () => {
+
+				const mirroredTap = direction.add( tangent.mul( offset.x ) ).sub( bitangent.mul( offset.y ) );
+				color.addAssign( envMap.sample( mirroredTap ).level( level ).rgb.mul( weight ) );
+				weightSum.addAssign( weight );
+
+			} );
 
 		} );
 

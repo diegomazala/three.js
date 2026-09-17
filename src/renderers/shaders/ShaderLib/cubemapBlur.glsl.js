@@ -88,7 +88,7 @@ void main() {
 	// bounds keep the compiler from unrolling the loops
 	for ( int i = - radius; i <= radius; i ++ ) {
 
-		for ( int j = - radius; j <= radius; j ++ ) {
+		for ( int j = 0; j <= radius; j ++ ) {
 
 			vec2 offset = vec2( float( i ), float( j ) ) * spacing;
 			float r2 = dot( offset, offset );
@@ -98,6 +98,14 @@ void main() {
 
 			color += weight * textureCubeLodEXT( envMap, direction + offset.x * tangent + offset.y * bitangent, level ).rgb;
 			weightSum += weight;
+
+			// Mirrored taps have the same angle and solid angle, so reuse their weight.
+			if ( j > 0 ) {
+
+				color += weight * textureCubeLodEXT( envMap, direction + offset.x * tangent - offset.y * bitangent, level ).rgb;
+				weightSum += weight;
+
+			}
 
 		}
 
