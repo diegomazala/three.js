@@ -39018,7 +39018,7 @@ function _createCopyPass( sourceTexture ) {
 
 	material.fragmentNode = Fn( () => {
 
-		// Supersample so sources larger than the copy keep their energy (e.g. small HDR suns).
+		// Supersample to preserve energy in small HDR highlights.
 		const dx = dFdx( positionWorldDirection ).div( SUPERSAMPLING ).toVar();
 		const dy = dFdy( positionWorldDirection ).div( SUPERSAMPLING ).toVar();
 		const origin = positionWorldDirection.sub( dx.add( dy ).mul( 0.5 * ( SUPERSAMPLING - 1 ) ) ).toVar();
@@ -39064,9 +39064,8 @@ function _createBlurPass() {
 		const color = vec3( 0.0 ).toVar();
 		const weightSum = float( 0.0 ).toVar();
 
-		// grid of taps on the tangent plane, weighted by the Gaussian of the angle
-		// to the tap and the solid angle its cell covers on the sphere, the uniform
-		// bounds keep the compiler from unrolling the loops
+		// Weight tangent-plane taps by angular Gaussian and solid angle.
+		// Uniform bounds prevent loop unrolling.
 		const range = { start: radius.negate(), end: radius, condition: '<=' };
 
 		Loop( range, { start: 0, end: radius, condition: '<=' }, ( { i, j } ) => {
@@ -39082,7 +39081,7 @@ function _createBlurPass() {
 			color.addAssign( envMap.sample( tap ).level( level ).rgb.mul( weight ) );
 			weightSum.addAssign( weight );
 
-			// Mirrored taps have the same angle and solid angle, so reuse their weight.
+			// Mirrored taps share Gaussian and solid angle weights.
 			If( j.greaterThan( 0 ), () => {
 
 				const mirroredTap = direction.add( tangent.mul( offset.x ) ).sub( bitangent.mul( offset.y ) );
@@ -39119,7 +39118,7 @@ function _createSpherePass() {
 		const color = vec3( 0.0 ).toVar();
 		const weightSum = float( 0.0 ).toVar();
 
-		// Every source texel, paired with its antipode to share the angle and solid angle calculation.
+		// Pair antipodal samples to reuse angle and solid angle calculations.
 		Loop( 3 * n * n, ( { i: t } ) => {
 
 			const axis = t.div( n * n ).toVar();
@@ -39199,7 +39198,7 @@ function _getCache( renderer ) {
 }
 
 /**
- * Blurs the node's texture, reusing its previous result while the blur amount and the texture are unchanged.
+ * Returns the cached blur, updating it when the source or amount changes.
  *
  * @private
  * @param {CubemapBlurNode} node - The node owning the blurred result.
@@ -39211,7 +39210,7 @@ function _getBlurredCubemap( node, renderer ) {
 	const { value: texture, amount } = node;
 	const { generator, entries } = _getCache( renderer );
 
-	// Each node owns its output so another blur amount cannot overwrite or dispose it.
+	// Cache by node to keep blur amounts independent.
 	let entry = entries.get( node );
 
 	if ( entry === undefined || entry.texture !== texture || entry.amount !== amount || entry.pmremVersion !== texture.pmremVersion ) {
@@ -39268,9 +39267,9 @@ function _getBlurredCubemap( node, renderer ) {
 }
 
 /**
- * This node samples an environment map blurred by {@link CubemapBlurGenerator}. The
- * blur is regenerated whenever {@link CubemapBlurNode#amount} changes.
- * Each node caches its own result per renderer. Calling `dispose()` releases these results.
+ * Samples an environment map blurred by {@link CubemapBlurGenerator}.
+ * Changing {@link CubemapBlurNode#amount} regenerates the blur.
+ * Results are cached per node and renderer; `dispose()` releases them.
  *
  * @augments TempNode
  */
