@@ -56,7 +56,7 @@ function _getCache( renderer ) {
 }
 
 /**
- * Blurs the node's texture, reusing its previous result while the blur amount and the texture are unchanged.
+ * Returns the cached blur, updating it when the source or amount changes.
  *
  * @private
  * @param {CubemapBlurNode} node - The node owning the blurred result.
@@ -68,7 +68,7 @@ function _getBlurredCubemap( node, renderer ) {
 	const { value: texture, amount } = node;
 	const { generator, entries } = _getCache( renderer );
 
-	// Each node owns its output so another blur amount cannot overwrite or dispose it.
+	// Cache by node to keep blur amounts independent.
 	let entry = entries.get( node );
 
 	if ( entry === undefined || entry.texture !== texture || entry.amount !== amount || entry.pmremVersion !== texture.pmremVersion ) {
@@ -125,9 +125,9 @@ function _getBlurredCubemap( node, renderer ) {
 }
 
 /**
- * This node samples an environment map blurred by {@link CubemapBlurGenerator}. The
- * blur is regenerated whenever {@link CubemapBlurNode#amount} changes.
- * Each node caches its own result per renderer. Calling `dispose()` releases these results.
+ * Samples an environment map blurred by {@link CubemapBlurGenerator}.
+ * Changing {@link CubemapBlurNode#amount} regenerates the blur.
+ * Results are cached per node and renderer; `dispose()` releases them.
  *
  * @augments TempNode
  */

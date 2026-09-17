@@ -36,7 +36,7 @@ vec3 sampleSource( vec3 direction ) {
 
 void main() {
 
-	// Supersample so sources larger than the copy keep their energy (e.g. small HDR suns).
+	// Supersample to preserve energy in small HDR highlights.
 	vec3 dx = dFdx( vWorldDirection ) / float( SUPERSAMPLING );
 	vec3 dy = dFdy( vWorldDirection ) / float( SUPERSAMPLING );
 	vec3 origin = vWorldDirection - ( dx + dy ) * 0.5 * float( SUPERSAMPLING - 1 );
@@ -83,9 +83,8 @@ void main() {
 	vec3 color = vec3( 0.0 );
 	float weightSum = 0.0;
 
-	// grid of taps on the tangent plane, weighted by the Gaussian of the angle
-	// to the tap and the solid angle its cell covers on the sphere, the uniform
-	// bounds keep the compiler from unrolling the loops
+	// Weight tangent-plane taps by angular Gaussian and solid angle.
+	// Uniform bounds prevent loop unrolling.
 	for ( int i = - radius; i <= radius; i ++ ) {
 
 		for ( int j = 0; j <= radius; j ++ ) {
@@ -99,7 +98,7 @@ void main() {
 			color += weight * textureCubeLodEXT( envMap, direction + offset.x * tangent + offset.y * bitangent, level ).rgb;
 			weightSum += weight;
 
-			// Mirrored taps have the same angle and solid angle, so reuse their weight.
+			// Mirrored taps share Gaussian and solid angle weights.
 			if ( j > 0 ) {
 
 				color += weight * textureCubeLodEXT( envMap, direction + offset.x * tangent - offset.y * bitangent, level ).rgb;
@@ -134,7 +133,7 @@ void main() {
 	vec3 color = vec3( 0.0 );
 	float weightSum = 0.0;
 
-	// Every source texel, paired with its antipode to share the angle and solid angle calculation.
+	// Pair antipodal samples to reuse angle and solid angle calculations.
 	for ( int t = 0; t < 3 * SIZE * SIZE; t ++ ) {
 
 		int axis = t / ( SIZE * SIZE );

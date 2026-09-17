@@ -20,7 +20,7 @@ export default QUnit.module( 'Nodes', () => {
 				disposals = new Map();
 				fromTexture = CubemapBlurGenerator.prototype.fromTexture;
 
-				// Simulate the generator's target reuse and replacement without a GPU.
+				// Model target reuse and resizing without a GPU.
 				CubemapBlurGenerator.prototype.fromTexture = function ( texture, amount, renderTarget = null ) {
 
 					const size = amount < 0.5 ? 64 : 16;
