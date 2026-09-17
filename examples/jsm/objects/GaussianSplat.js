@@ -26,6 +26,7 @@ import {
 	float,
 	highpModelViewMatrix,
 	instanceIndex,
+	length,
 	max,
 	min,
 	normalize,
@@ -52,6 +53,7 @@ import {
 const BIN_COUNT = 4096;
 const WORKGROUP_SIZE = 256;
 const SORT_DIRECTION_THRESHOLD = 0.9995;
+const SORT_POSITION_THRESHOLD_SQ = 0.001 * 0.001;
 const KERNEL_2D_SIZE = 0.3;
 const SPLAT_KERNEL_CUTOFF = 2;
 const COVARIANCE_FLATNESS = 1e-4;
@@ -63,6 +65,7 @@ const _worldCenter = /*@__PURE__*/ new Vector3();
 const _viewCenter = /*@__PURE__*/ new Vector3();
 const _worldScale = /*@__PURE__*/ new Vector3();
 const _sortDirection = /*@__PURE__*/ new Vector3();
+const _sortOrigin = /*@__PURE__*/ new Vector3();
 const _sortDepthRange = /*@__PURE__*/ new Vector2();
 const _worldMatrixInverse = /*@__PURE__*/ new Matrix4();
 const _modelViewMatrix = /*@__PURE__*/ new Matrix4();
@@ -99,8 +102,9 @@ class GaussianSplat extends Mesh {
 	 * @param {BufferGeometry} splatGeometry - The splat geometry to render. Higher-order spherical harmonics attributes must use packed `Uint32Array` words from {@link createGaussianSplatGeometry} (`SH_BAND_WORDS[ degree ]` words per splat, four clamped-byte coefficients per word).
 	 * @param {Object} [options] - Options.
 	 * @param {boolean} [options.autoSort=true] - Whether to sort automatically in `onBeforeRender`.
+	 * @param {boolean} [options.sortRadial=false] - Whether to sort by radial distance from the camera rather than view-space depth. Radial order changes as the camera translates, so this also re-sorts on camera movement.
 	 */
-	constructor( splatGeometry, { autoSort = true } = {} ) {
+	constructor( splatGeometry, { autoSort = true, sortRadial = false } = {} ) {
 
 		const positionAttribute = splatGeometry.getAttribute( 'position' );
 		const covarianceAttribute = splatGeometry.getAttribute( 'covariance' );
@@ -172,7 +176,9 @@ class GaussianSplat extends Mesh {
 		this._sortMatrix = uniform( new Matrix4() );
 		this._sortDepthRange = uniform( new Vector2( 0, 1 ) );
 		this._sortInitialized = false;
+		this._sortRadial = sortRadial;
 		this._lastSortDirection = new Vector3();
+		this._lastSortOrigin = new Vector3();
 		this._localCameraPosition = localCameraPosition;
 		this._sphericalHarmonicsComputeNode = sphericalHarmonicsComputeNode;
 		this._sphericalHarmonicsInitialized = false;
@@ -190,7 +196,7 @@ class GaussianSplat extends Mesh {
 
 			const center = centerRead.element( instanceIndex ).xyz.toVar( 'center' );
 			const viewCenter = sortMatrix.mul( vec4( center, 1 ) ).xyz.toVar( 'viewCenter' );
-			const depth = viewCenter.z.negate().toVar( 'depth' );
+			const depth = ( sortRadial ? length( viewCenter ) : viewCenter.z.negate() ).toVar( 'depth' );
 			const range = max( sortDepthRange.y.sub( sortDepthRange.x ), 0.0001 ).toVar( 'range' );
 			const normalized = depth.sub( sortDepthRange.x ).div( range ).clamp( 0, 1 ).toVar( 'normalized' );
 			const depthBin = uint( normalized.mul( BIN_COUNT - 1 ) ).toVar( 'depthBin' );
@@ -423,6 +429,7 @@ class GaussianSplat extends Mesh {
 
 			this._sortInitialized = true;
 			this._lastSortDirection.copy( _sortDirection );
+			this._lastSortOrigin.copy( _sortOrigin );
 
 			return true;
 
@@ -438,8 +445,12 @@ class GaussianSplat extends Mesh {
 
 		const e = _modelViewMatrix.elements;
 		_sortDirection.set( e[ 2 ], e[ 6 ], e[ 10 ] ).normalize();
+		_sortOrigin.setFromMatrixPosition( camera.matrixWorld );
 
-		return _sortDirection.dot( this._lastSortDirection ) < SORT_DIRECTION_THRESHOLD;
+		if ( _sortDirection.dot( this._lastSortDirection ) < SORT_DIRECTION_THRESHOLD ) return true;
+
+		// Radial order depends on the camera position, not only its direction.
+		return this._sortRadial === true && _sortOrigin.distanceToSquared( this._lastSortOrigin ) > SORT_POSITION_THRESHOLD_SQ;
 
 	}
 
@@ -455,7 +466,7 @@ class GaussianSplat extends Mesh {
 		_worldScale.setFromMatrixScale( this.matrixWorld );
 
 		const radius = this.boundingSphere.radius * Math.max( _worldScale.x, _worldScale.y, _worldScale.z );
-		const depth = - _viewCenter.z;
+		const depth = this._sortRadial === true ? _viewCenter.length() : - _viewCenter.z;
 		const nearDepth = Math.max( camera.near, depth - radius );
 		const farDepth = Math.max( nearDepth + 0.0001, depth + radius );
 
@@ -471,11 +482,23 @@ class GaussianSplat extends Mesh {
 		const nearDepth = this._sortDepthRange.value.x;
 		const range = Math.max( this._sortDepthRange.value.y - nearDepth, 0.0001 );
 		const scale = ( BIN_COUNT - 1 ) / range;
+		const sortRadial = this._sortRadial === true;
 
 		this._sort.computeCPU( ( i ) => {
 
 			const i3 = i * 3;
-			const depth = - ( matrix[ 2 ] * centers[ i3 ] + matrix[ 6 ] * centers[ i3 + 1 ] + matrix[ 10 ] * centers[ i3 + 2 ] + matrix[ 14 ] );
+			const x = centers[ i3 ], y = centers[ i3 + 1 ], z = centers[ i3 + 2 ];
+			const vz = matrix[ 2 ] * x + matrix[ 6 ] * y + matrix[ 10 ] * z + matrix[ 14 ];
+			let depth = - vz;
+
+			if ( sortRadial ) {
+
+				const vx = matrix[ 0 ] * x + matrix[ 4 ] * y + matrix[ 8 ] * z + matrix[ 12 ];
+				const vy = matrix[ 1 ] * x + matrix[ 5 ] * y + matrix[ 9 ] * z + matrix[ 13 ];
+				depth = Math.sqrt( vx * vx + vy * vy + vz * vz );
+
+			}
+
 			const depthBin = Math.min( BIN_COUNT - 1, Math.max( 0, Math.floor( ( depth - nearDepth ) * scale ) ) );
 
 			return BIN_COUNT - 1 - depthBin;
