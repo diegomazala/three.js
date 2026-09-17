@@ -742,7 +742,7 @@ class NodeManager extends DataMap {
 
 					}
 
-				}, forceUpdate );
+				} );
 
 				sceneData.backgroundNode = backgroundNode;
 				sceneData.background = background;
