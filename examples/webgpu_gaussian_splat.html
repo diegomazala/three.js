@@ -49,7 +49,7 @@
 			import { GaussianSplat } from 'three/addons/objects/GaussianSplat.js';
 			import { Inspector } from 'three/addons/inspector/Inspector.js';
 
-			let camera, scene, renderer, controls, splats, splatRoot, hitMarker;
+			let camera, scene, renderer, controls, splats, splatRoot, splatData, splatSource, hitMarker;
 			THREE.ColorManagement.workingColorSpace = THREE.SRGBColorSpace;
 
 			const zeroVector = new THREE.Vector3();
@@ -107,7 +107,8 @@
 			};
 			const sourceNames = Object.values( sources ).map( ( source ) => source.name );
 			const params = {
-				source: sources.lion.name
+				source: sources.lion.name,
+				sortRadial: false
 			};
 
 			init();
@@ -142,6 +143,7 @@
 					await loadSplatSource( getSourceKeyByName( value ) );
 
 				} );
+				gui.add( params, 'sortRadial' ).name( 'Radial sort' ).onChange( createSplats );
 
 				hitMarker = new THREE.Mesh(
 					new THREE.SphereGeometry( 1, 16, 12 ),
@@ -198,21 +200,28 @@
 			async function loadSplatSource( sourceKey ) {
 
 				const source = sources[ sourceKey ];
-				const splatData = await new source.loader().loadAsync( source.url );
+				splatData = await new source.loader().loadAsync( source.url );
+				splatSource = source;
 
-				disposeCurrentSplats();
-
-				splats = new GaussianSplat( splatData, { autoSort: false } );
-				splatRoot = splats;
-
-				if ( source.rotation !== undefined ) splatRoot.rotation.copy( source.rotation );
-
-				scene.add( splatRoot );
+				createSplats();
 
 				fitCameraToSplats( splats, source );
 				updateHitMarkerSize( splats );
 
 				updateLicenseInfo( source );
+
+			}
+
+			function createSplats() {
+
+				disposeCurrentSplats();
+
+				splats = new GaussianSplat( splatData, { autoSort: false, sortRadial: params.sortRadial } );
+				splatRoot = splats;
+
+				if ( splatSource.rotation !== undefined ) splatRoot.rotation.copy( splatSource.rotation );
+
+				scene.add( splatRoot );
 
 			}
 
