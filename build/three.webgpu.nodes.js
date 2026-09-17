@@ -39181,7 +39181,7 @@ const cubeFaceDir = /*@__PURE__*/ Fn( ( [ face, uv ] ) => {
  *
  * @private
  * @param {Renderer} renderer - The renderer.
- * @return {{generator: CubemapBlurGenerator, entries: WeakMap<Texture, Object>}} The cache.
+ * @return {{generator: CubemapBlurGenerator, entries: WeakMap<CubemapBlurNode, Object>}} The cache.
  */
 function _getCache( renderer ) {
 
@@ -39199,21 +39199,22 @@ function _getCache( renderer ) {
 }
 
 /**
- * Blurs the given texture, reusing the previous result while the blur amount and the texture are unchanged.
+ * Blurs the node's texture, reusing its previous result while the blur amount and the texture are unchanged.
  *
  * @private
- * @param {Texture} texture - The texture to blur.
- * @param {number} amount - The blur amount in the range `[0,1]`.
+ * @param {CubemapBlurNode} node - The node owning the blurred result.
  * @param {Renderer} renderer - The renderer.
  * @return {?CubeRenderTarget} The render target holding the blurred cube map or `null` if the texture is not ready yet.
  */
-function _getBlurredCubemap( texture, amount, renderer ) {
+function _getBlurredCubemap( node, renderer ) {
 
+	const { value: texture, amount } = node;
 	const { generator, entries } = _getCache( renderer );
 
-	let entry = entries.get( texture );
+	// Each node owns its output so another blur amount cannot overwrite or dispose it.
+	let entry = entries.get( node );
 
-	if ( entry === undefined || entry.amount !== amount || entry.pmremVersion !== texture.pmremVersion ) {
+	if ( entry === undefined || entry.texture !== texture || entry.amount !== amount || entry.pmremVersion !== texture.pmremVersion ) {
 
 		const image = texture.image;
 		const ready = texture.isCubeTexture ? ( image.length === 6 && ! image.includes( undefined ) ) : ( image && image.height > 0 );
@@ -39222,19 +39223,37 @@ function _getBlurredCubemap( texture, amount, renderer ) {
 
 		if ( entry === undefined ) {
 
-			entry = { renderTarget: null };
-			entries.set( texture, entry );
+			entry = { texture: null, renderTarget: null };
+			entries.set( node, entry );
 
-			const onDispose = () => {
+			entry.dispose = () => {
 
-				texture.removeEventListener( 'dispose', onDispose );
+				if ( entry.texture !== null ) entry.texture.removeEventListener( 'dispose', entry.dispose );
+				if ( entry.renderTarget !== null ) entry.renderTarget.dispose();
 
-				entries.delete( texture );
-				entry.renderTarget.dispose();
+				entry.texture = null;
+				entry.renderTarget = null;
 
 			};
 
-			texture.addEventListener( 'dispose', onDispose );
+			const onDispose = ( event ) => {
+
+				entry.dispose();
+				event.target.removeEventListener( 'dispose', onDispose );
+				entries.delete( event.target );
+
+			};
+
+			node.addEventListener( 'dispose', onDispose );
+
+		}
+
+		if ( entry.texture !== texture ) {
+
+			if ( entry.texture !== null ) entry.texture.removeEventListener( 'dispose', entry.dispose );
+
+			entry.texture = texture;
+			texture.addEventListener( 'dispose', entry.dispose );
 
 		}
 
@@ -39251,6 +39270,7 @@ function _getBlurredCubemap( texture, amount, renderer ) {
 /**
  * This node samples an environment map blurred by {@link CubemapBlurGenerator}. The
  * blur is regenerated whenever {@link CubemapBlurNode#amount} changes.
+ * Each node caches its own result per renderer. Calling `dispose()` releases these results.
  *
  * @augments TempNode
  */
@@ -39319,7 +39339,7 @@ class CubemapBlurNode extends TempNode {
 
 	updateBefore( frame ) {
 
-		const renderTarget = _getBlurredCubemap( this.value, this.amount, frame.renderer );
+		const renderTarget = _getBlurredCubemap( this, frame.renderer );
 
 		if ( renderTarget !== null ) this._cubeTextureNode.value = renderTarget.texture;
 
@@ -59065,7 +59085,7 @@ class NodeManager extends DataMap {
 
 					}
 
-				}, forceUpdate );
+				} );
 
 				sceneData.backgroundNode = backgroundNode;
 				sceneData.background = background;
