@@ -56,21 +56,21 @@ function _getCache( renderer ) {
 }
 
 /**
- * Blurs the given texture, reusing the previous result while the blurriness and the texture are unchanged.
+ * Blurs the given texture, reusing the previous result while the blur amount and the texture are unchanged.
  *
  * @private
  * @param {Texture} texture - The texture to blur.
- * @param {number} blurriness - The blurriness in the range `[0,1]`.
+ * @param {number} amount - The blur amount in the range `[0,1]`.
  * @param {Renderer} renderer - The renderer.
  * @return {?CubeRenderTarget} The render target holding the blurred cube map or `null` if the texture is not ready yet.
  */
-function _getBlurredCubemap( texture, blurriness, renderer ) {
+function _getBlurredCubemap( texture, amount, renderer ) {
 
 	const { generator, entries } = _getCache( renderer );
 
 	let entry = entries.get( texture );
 
-	if ( entry === undefined || entry.blurriness !== blurriness || entry.pmremVersion !== texture.pmremVersion ) {
+	if ( entry === undefined || entry.amount !== amount || entry.pmremVersion !== texture.pmremVersion ) {
 
 		const image = texture.image;
 		const ready = texture.isCubeTexture ? ( image.length === 6 && ! image.includes( undefined ) ) : ( image && image.height > 0 );
@@ -95,8 +95,8 @@ function _getBlurredCubemap( texture, blurriness, renderer ) {
 
 		}
 
-		entry.renderTarget = generator.fromTexture( texture, blurriness, entry.renderTarget );
-		entry.blurriness = blurriness;
+		entry.renderTarget = generator.fromTexture( texture, amount, entry.renderTarget );
+		entry.amount = amount;
 		entry.pmremVersion = texture.pmremVersion;
 
 	}
@@ -107,7 +107,7 @@ function _getBlurredCubemap( texture, blurriness, renderer ) {
 
 /**
  * This node samples an environment map blurred by {@link CubemapBlurGenerator}. The
- * blur is regenerated whenever {@link CubemapBlurNode#blurriness} changes.
+ * blur is regenerated whenever {@link CubemapBlurNode#amount} changes.
  *
  * @augments TempNode
  */
@@ -136,12 +136,12 @@ class CubemapBlurNode extends TempNode {
 		this.value = value;
 
 		/**
-		 * The blurriness in the range `[0,1]`, see {@link Scene#backgroundBlurriness}.
+		 * The blur amount in the range `[0,1]`, see {@link Scene#backgroundBlurriness}.
 		 *
 		 * @type {number}
 		 * @default 0
 		 */
-		this.blurriness = 0;
+		this.amount = 0;
 
 		/**
 		 * This flag can be used for type testing.
@@ -176,7 +176,7 @@ class CubemapBlurNode extends TempNode {
 
 	updateBefore( frame ) {
 
-		const renderTarget = _getBlurredCubemap( this.value, this.blurriness, frame.renderer );
+		const renderTarget = _getBlurredCubemap( this.value, this.amount, frame.renderer );
 
 		if ( renderTarget !== null ) this._cubeTextureNode.value = renderTarget.texture;
 

@@ -752,7 +752,7 @@ class NodeManager extends DataMap {
 
 			if ( sceneData.backgroundNode && sceneData.backgroundNode.isCubemapBlurNode === true ) {
 
-				sceneData.backgroundNode.blurriness = scene.backgroundBlurriness;
+				sceneData.backgroundNode.amount = scene.backgroundBlurriness;
 
 			}
 
