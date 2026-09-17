@@ -168,6 +168,7 @@ export const countTrailingZeros = TSL.countTrailingZeros;
 export const cross = TSL.cross;
 export const cubeTexture = TSL.cubeTexture;
 export const cubeTextureBase = TSL.cubeTextureBase;
+export const cubemapBlurTexture = TSL.cubemapBlurTexture;
 export const dFdx = TSL.dFdx;
 export const dFdy = TSL.dFdy;
 export const dashSize = TSL.dashSize;
