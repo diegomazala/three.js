@@ -5,6 +5,7 @@ import { floorPowerOfTwo } from '../math/MathUtils.js';
 import { Mesh } from '../objects/Mesh.js';
 import { ShaderMaterial } from '../materials/ShaderMaterial.js';
 import { ShaderLib } from '../renderers/shaders/ShaderLib.js';
+import { copyFragment, blurFragment, sphereFragment } from '../renderers/shaders/ShaderLib/cubemapBlur.glsl.js';
 import { WebGLCubeRenderTarget } from '../renderers/WebGLCubeRenderTarget.js';
 
 // sharp copy of the environment, its mip chain feeds the blur
@@ -223,65 +224,7 @@ function _createCopyMaterial() {
 		'envMap': { value: null },
 		'flipEnvMap': { value: 1 }
 
-	}, /* glsl */`
-
-		#include <common>
-		#include <cube_uv_reflection_fragment>
-
-		#ifdef ENVMAP_TYPE_CUBE
-
-			uniform samplerCube envMap;
-			uniform float flipEnvMap;
-
-		#else
-
-			uniform sampler2D envMap;
-
-		#endif
-
-		varying vec3 vWorldDirection;
-
-		vec3 sampleSource( vec3 direction ) {
-
-			#if defined( ENVMAP_TYPE_CUBE )
-
-				return textureCubeLodEXT( envMap, vec3( flipEnvMap * direction.x, direction.yz ), 0.0 ).rgb;
-
-			#elif defined( ENVMAP_TYPE_CUBE_UV )
-
-				return textureCubeUV( envMap, direction, 0.0 ).rgb;
-
-			#else
-
-				return texture2DLodEXT( envMap, equirectUv( direction ), 0.0 ).rgb;
-
-			#endif
-
-		}
-
-		void main() {
-
-			// Supersample so sources larger than the copy keep their energy (e.g. small HDR suns).
-			vec3 dx = dFdx( vWorldDirection ) / float( SUPERSAMPLING );
-			vec3 dy = dFdy( vWorldDirection ) / float( SUPERSAMPLING );
-			vec3 origin = vWorldDirection - ( dx + dy ) * 0.5 * float( SUPERSAMPLING - 1 );
-
-			vec3 color = vec3( 0.0 );
-
-			for ( int i = 0; i < SUPERSAMPLING; i ++ ) {
-
-				for ( int j = 0; j < SUPERSAMPLING; j ++ ) {
-
-					color += sampleSource( normalize( origin + float( i ) * dx + float( j ) * dy ) );
-
-				}
-
-			}
-
-			gl_FragColor = vec4( color / float( SUPERSAMPLING * SUPERSAMPLING ), 1.0 );
-
-		}
-	` );
+	}, copyFragment );
 
 	// let the renderer derive the ENVMAP_TYPE_* and CUBEUV_* defines from the source texture,
 	// equirectangular textures fall through to the last branch of the shader
@@ -311,55 +254,7 @@ function _createBlurMaterial() {
 		'spacing': { value: 0 },
 		'radius': { value: 0 }
 
-	}, /* glsl */`
-
-		#include <common>
-
-		uniform samplerCube envMap;
-		uniform float sigma;
-		uniform float level;
-		uniform float spacing;
-		uniform int radius;
-
-		varying vec3 vWorldDirection;
-
-		void main() {
-
-			vec3 direction = normalize( vWorldDirection );
-
-			vec3 up = abs( direction.z ) < 0.999 ? vec3( 0.0, 0.0, 1.0 ) : vec3( 1.0, 0.0, 0.0 );
-			vec3 tangent = normalize( cross( up, direction ) );
-			vec3 bitangent = cross( direction, tangent );
-
-			float k = - 0.5 / ( sigma * sigma );
-
-			vec3 color = vec3( 0.0 );
-			float weightSum = 0.0;
-
-			// grid of taps on the tangent plane, weighted by the Gaussian of the angle
-			// to the tap and the solid angle its cell covers on the sphere, the uniform
-			// bounds keep the compiler from unrolling the loops
-			for ( int i = - radius; i <= radius; i ++ ) {
-
-				for ( int j = - radius; j <= radius; j ++ ) {
-
-					vec2 offset = vec2( float( i ), float( j ) ) * spacing;
-					float r2 = dot( offset, offset );
-
-					float theta = atan( sqrt( r2 ) );
-					float weight = exp( k * theta * theta ) * inversesqrt( ( 1.0 + r2 ) * ( 1.0 + r2 ) * ( 1.0 + r2 ) );
-
-					color += weight * textureCubeLodEXT( envMap, direction + offset.x * tangent + offset.y * bitangent, level ).rgb;
-					weightSum += weight;
-
-				}
-
-			}
-
-			gl_FragColor = vec4( color / weightSum, 1.0 );
-
-		}
-	` );
+	}, blurFragment );
 
 }
 
@@ -370,50 +265,7 @@ function _createSphereMaterial() {
 		'envMap': { value: null },
 		'sigma': { value: 0 }
 
-	}, /* glsl */`
-
-		#include <common>
-
-		uniform samplerCube envMap;
-		uniform float sigma;
-
-		varying vec3 vWorldDirection;
-
-		void main() {
-
-			vec3 direction = normalize( vWorldDirection );
-
-			float k = - 0.5 / ( sigma * sigma );
-
-			vec3 color = vec3( 0.0 );
-			float weightSum = 0.0;
-
-			// every texel of the source level, weighted by the Gaussian of its angle and its solid angle,
-			// the face orientation does not matter for a sum over all of them
-			for ( int t = 0; t < 6 * SIZE * SIZE; t ++ ) {
-
-				int face = t / ( SIZE * SIZE );
-				int texel = t - face * SIZE * SIZE;
-
-				vec2 st = ( vec2( float( texel % SIZE ), float( texel / SIZE ) ) + 0.5 ) / float( SIZE ) * 2.0 - 1.0;
-				float s = face % 2 == 0 ? 1.0 : - 1.0;
-				int axis = face / 2;
-
-				vec3 d = axis == 0 ? vec3( s, st ) : axis == 1 ? vec3( st.x, s, st.y ) : vec3( st, s );
-				float r2 = dot( d, d );
-
-				float theta = acos( clamp( dot( direction, d * inversesqrt( r2 ) ), - 1.0, 1.0 ) );
-				float weight = exp( k * theta * theta ) * inversesqrt( r2 * r2 * r2 );
-
-				color += weight * textureCubeLodEXT( envMap, d, LEVEL ).rgb;
-				weightSum += weight;
-
-			}
-
-			gl_FragColor = vec4( color / weightSum, 1.0 );
-
-		}
-	` );
+	}, sphereFragment );
 
 }
 
