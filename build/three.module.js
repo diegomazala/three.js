@@ -3,7 +3,7 @@
  * Copyright 2010-2026 Three.js Authors
  * SPDX-License-Identifier: MIT
  */
-import { Matrix3, Vector2, Color, Vector3, mergeUniforms, CubeUVReflectionMapping, Mesh, BoxGeometry, ShaderMaterial, BackSide, cloneUniforms, Matrix4, ColorManagement, SRGBTransfer, PlaneGeometry, FrontSide, getUnlitUniformColorSpace, IntType, warn, HalfFloatType, UnsignedByteType, FloatType, RGBAFormat, Plane, CubeReflectionMapping, CubeRefractionMapping, BufferGeometry, OrthographicCamera, PerspectiveCamera, NoToneMapping, MeshBasicMaterial, NoBlending, WebGLRenderTarget, BufferAttribute, LinearSRGBColorSpace, LinearFilter, CubeTexture, LinearMipmapLinearFilter, CubeCamera, EquirectangularReflectionMapping, EquirectangularRefractionMapping, warnOnce, Uint32BufferAttribute, Uint16BufferAttribute, error, DataArrayTexture, Vector4, Float32BufferAttribute, RawShaderMaterial, CustomToneMapping, NeutralToneMapping, AgXToneMapping, ACESFilmicToneMapping, CineonToneMapping, ReinhardToneMapping, LinearToneMapping, Data3DTexture, GreaterEqualCompare, LessEqualCompare, DepthTexture, Texture, GLSL3, VSMShadowMap, PCFShadowMap, AddOperation, MixOperation, MultiplyOperation, LinearTransfer, UniformsUtils, DoubleSide, NormalBlending, TangentSpaceNormalMap, ObjectSpaceNormalMap, Layers, RGFormat, RG11_EAC_Format, RED_GREEN_RGTC2_Format, MeshDepthMaterial, MeshDistanceMaterial, PCFSoftShadowMap, DepthFormat, NearestFilter, CubeDepthTexture, UnsignedIntType, Frustum, LessEqualDepth, ReverseSubtractEquation, SubtractEquation, AddEquation, OneMinusConstantAlphaFactor, ConstantAlphaFactor, OneMinusConstantColorFactor, ConstantColorFactor, OneMinusDstAlphaFactor, OneMinusDstColorFactor, OneMinusSrcAlphaFactor, OneMinusSrcColorFactor, DstAlphaFactor, DstColorFactor, SrcAlphaSaturateFactor, SrcAlphaFactor, SrcColorFactor, OneFactor, ZeroFactor, NotEqualDepth, GreaterDepth, GreaterEqualDepth, EqualDepth, LessDepth, AlwaysDepth, NeverDepth, CullFaceNone, CullFaceBack, CullFaceFront, CustomBlending, MultiplyBlending, SubtractiveBlending, AdditiveBlending, ReversedDepthFuncs, MinEquation, MaxEquation, MirroredRepeatWrapping, ClampToEdgeWrapping, RepeatWrapping, LinearMipmapNearestFilter, NearestMipmapLinearFilter, NearestMipmapNearestFilter, NotEqualCompare, GreaterCompare, EqualCompare, LessCompare, AlwaysCompare, NeverCompare, NoColorSpace, DepthStencilFormat, getByteLength, UnsignedInt248Type, UnsignedShortType, createElementNS, UnsignedShort4444Type, UnsignedShort5551Type, UnsignedInt5999Type, UnsignedInt101111Type, ByteType, ShortType, AlphaFormat, RGBFormat, RedFormat, RedIntegerFormat, RGIntegerFormat, RGBAIntegerFormat, RGB_S3TC_DXT1_Format, RGBA_S3TC_DXT1_Format, RGBA_S3TC_DXT3_Format, RGBA_S3TC_DXT5_Format, RGB_PVRTC_4BPPV1_Format, RGB_PVRTC_2BPPV1_Format, RGBA_PVRTC_4BPPV1_Format, RGBA_PVRTC_2BPPV1_Format, RGB_ETC1_Format, RGB_ETC2_Format, RGBA_ETC2_EAC_Format, R11_EAC_Format, SIGNED_R11_EAC_Format, SIGNED_RG11_EAC_Format, RGBA_ASTC_4x4_Format, RGBA_ASTC_5x4_Format, RGBA_ASTC_5x5_Format, RGBA_ASTC_6x5_Format, RGBA_ASTC_6x6_Format, RGBA_ASTC_8x5_Format, RGBA_ASTC_8x6_Format, RGBA_ASTC_8x8_Format, RGBA_ASTC_10x5_Format, RGBA_ASTC_10x6_Format, RGBA_ASTC_10x8_Format, RGBA_ASTC_10x10_Format, RGBA_ASTC_12x10_Format, RGBA_ASTC_12x12_Format, RGBA_BPTC_Format, RGB_BPTC_SIGNED_Format, RGB_BPTC_UNSIGNED_Format, RED_RGTC1_Format, SIGNED_RED_RGTC1_Format, SIGNED_RED_GREEN_RGTC2_Format, ExternalTexture, EventDispatcher, ArrayCamera, WebXRController, RAD2DEG, DataTexture, createCanvasElement, SRGBColorSpace, REVISION, log, FrustumArray, WebGLCoordinateSystem, probeAsync } from './three.core.js';
+import { Matrix3, Vector2, Color, Vector3, mergeUniforms, CubeUVReflectionMapping, Mesh, BoxGeometry, ShaderMaterial, BackSide, cloneUniforms, Matrix4, ColorManagement, SRGBTransfer, PlaneGeometry, FrontSide, getUnlitUniformColorSpace, IntType, warn, HalfFloatType, UnsignedByteType, FloatType, RGBAFormat, Plane, CubeReflectionMapping, CubeRefractionMapping, BufferGeometry, OrthographicCamera, PerspectiveCamera, NoToneMapping, MeshBasicMaterial, NoBlending, WebGLRenderTarget, BufferAttribute, LinearSRGBColorSpace, LinearFilter, CubeTexture, LinearMipmapLinearFilter, CubeCamera, floorPowerOfTwo, EquirectangularReflectionMapping, EquirectangularRefractionMapping, warnOnce, Uint32BufferAttribute, Uint16BufferAttribute, error, DataArrayTexture, Vector4, Float32BufferAttribute, RawShaderMaterial, CustomToneMapping, NeutralToneMapping, AgXToneMapping, ACESFilmicToneMapping, CineonToneMapping, ReinhardToneMapping, LinearToneMapping, Data3DTexture, GreaterEqualCompare, LessEqualCompare, DepthTexture, Texture, GLSL3, VSMShadowMap, PCFShadowMap, AddOperation, MixOperation, MultiplyOperation, LinearTransfer, UniformsUtils, DoubleSide, NormalBlending, TangentSpaceNormalMap, ObjectSpaceNormalMap, Layers, RGFormat, RG11_EAC_Format, RED_GREEN_RGTC2_Format, MeshDepthMaterial, MeshDistanceMaterial, PCFSoftShadowMap, DepthFormat, NearestFilter, CubeDepthTexture, UnsignedIntType, Frustum, LessEqualDepth, ReverseSubtractEquation, SubtractEquation, AddEquation, OneMinusConstantAlphaFactor, ConstantAlphaFactor, OneMinusConstantColorFactor, ConstantColorFactor, OneMinusDstAlphaFactor, OneMinusDstColorFactor, OneMinusSrcAlphaFactor, OneMinusSrcColorFactor, DstAlphaFactor, DstColorFactor, SrcAlphaSaturateFactor, SrcAlphaFactor, SrcColorFactor, OneFactor, ZeroFactor, NotEqualDepth, GreaterDepth, GreaterEqualDepth, EqualDepth, LessDepth, AlwaysDepth, NeverDepth, CullFaceNone, CullFaceBack, CullFaceFront, CustomBlending, MultiplyBlending, SubtractiveBlending, AdditiveBlending, ReversedDepthFuncs, MinEquation, MaxEquation, MirroredRepeatWrapping, ClampToEdgeWrapping, RepeatWrapping, LinearMipmapNearestFilter, NearestMipmapLinearFilter, NearestMipmapNearestFilter, NotEqualCompare, GreaterCompare, EqualCompare, LessCompare, AlwaysCompare, NeverCompare, NoColorSpace, DepthStencilFormat, getByteLength, UnsignedInt248Type, UnsignedShortType, createElementNS, UnsignedShort4444Type, UnsignedShort5551Type, UnsignedInt5999Type, UnsignedInt101111Type, ByteType, ShortType, AlphaFormat, RGBFormat, RedFormat, RedIntegerFormat, RGIntegerFormat, RGBAIntegerFormat, RGB_S3TC_DXT1_Format, RGBA_S3TC_DXT1_Format, RGBA_S3TC_DXT3_Format, RGBA_S3TC_DXT5_Format, RGB_PVRTC_4BPPV1_Format, RGB_PVRTC_2BPPV1_Format, RGBA_PVRTC_4BPPV1_Format, RGBA_PVRTC_2BPPV1_Format, RGB_ETC1_Format, RGB_ETC2_Format, RGBA_ETC2_EAC_Format, R11_EAC_Format, SIGNED_R11_EAC_Format, SIGNED_RG11_EAC_Format, RGBA_ASTC_4x4_Format, RGBA_ASTC_5x4_Format, RGBA_ASTC_5x5_Format, RGBA_ASTC_6x5_Format, RGBA_ASTC_6x6_Format, RGBA_ASTC_8x5_Format, RGBA_ASTC_8x6_Format, RGBA_ASTC_8x8_Format, RGBA_ASTC_10x5_Format, RGBA_ASTC_10x6_Format, RGBA_ASTC_10x8_Format, RGBA_ASTC_10x10_Format, RGBA_ASTC_12x10_Format, RGBA_ASTC_12x12_Format, RGBA_BPTC_Format, RGB_BPTC_SIGNED_Format, RGB_BPTC_UNSIGNED_Format, RED_RGTC1_Format, SIGNED_RED_RGTC1_Format, SIGNED_RED_GREEN_RGTC2_Format, ExternalTexture, EventDispatcher, ArrayCamera, WebXRController, RAD2DEG, DataTexture, createCanvasElement, SRGBColorSpace, REVISION, log, FrustumArray, WebGLCoordinateSystem, probeAsync } from './three.core.js';
 export { AdditiveAnimationBlendMode, AlwaysStencilFunc, AmbientLight, AnimationAction, AnimationClip, AnimationLoader, AnimationMixer, AnimationObjectGroup, AnimationUtils, ArcCurve, ArrowHelper, AttachedBindMode, Audio, AudioAnalyser, AudioContext, AudioListener, AudioLoader, AxesHelper, BasicDepthPacking, BasicShadowMap, BatchedMesh, BezierInterpolant, Bone, BooleanKeyframeTrack, Box2, Box3, Box3Helper, BoxHelper, BufferGeometryLoader, Cache, Camera, CameraHelper, CanvasTexture, CapsuleGeometry, CatmullRomCurve3, CircleGeometry, Clock, ColorKeyframeTrack, Compatibility, CompressedArrayTexture, CompressedCubeTexture, CompressedTexture, CompressedTextureLoader, ConeGeometry, Controls, CubeTextureLoader, CubicBezierCurve, CubicBezierCurve3, CubicInterpolant, CullFaceFrontBack, Curve, CurvePath, CylinderGeometry, Cylindrical, DataTextureLoader, DataUtils, DecrementStencilOp, DecrementWrapStencilOp, DefaultLoadingManager, DetachedBindMode, DirectionalLight, DirectionalLightHelper, DiscreteInterpolant, DodecahedronGeometry, DynamicCopyUsage, DynamicDrawUsage, DynamicReadUsage, EdgesGeometry, EllipseCurve, EqualStencilFunc, Euler, ExtrudeGeometry, FileLoader, Float16BufferAttribute, Fog, FogExp2, FramebufferTexture, GLBufferAttribute, GLSL1, GreaterEqualStencilFunc, GreaterStencilFunc, GridHelper, Group, HTMLTexture, HemisphereLight, HemisphereLightHelper, IcosahedronGeometry, ImageBitmapLoader, ImageLoader, ImageUtils, IncrementStencilOp, IncrementWrapStencilOp, InstancedBufferAttribute, InstancedBufferGeometry, InstancedInterleavedBuffer, InstancedMesh, Int16BufferAttribute, Int32BufferAttribute, Int8BufferAttribute, InterleavedBuffer, InterleavedBufferAttribute, Interpolant, InterpolateBezier, InterpolateDiscrete, InterpolateLinear, InterpolateSmooth, InterpolationSamplingMode, InterpolationSamplingType, InvertStencilOp, KeepStencilOp, KeyframeTrack, LOD, LatheGeometry, LessEqualStencilFunc, LessStencilFunc, Light, LightProbe, LightShadow, Line, Line3, LineBasicMaterial, LineCurve, LineCurve3, LineDashedMaterial, LineLoop, LineSegments, LinearInterpolant, LinearMipMapLinearFilter, LinearMipMapNearestFilter, Loader, LoaderUtils, LoadingManager, LoopOnce, LoopPingPong, LoopRepeat, MOUSE, Material, MaterialBlending, MaterialLoader, MathUtils, Matrix2, MeshLambertMaterial, MeshMatcapMaterial, MeshNormalMaterial, MeshPhongMaterial, MeshPhysicalMaterial, MeshStandardMaterial, MeshToonMaterial, NearestMipMapLinearFilter, NearestMipMapNearestFilter, NeverStencilFunc, NoNormalPacking, NormalAnimationBlendMode, NormalGAPacking, NormalRGPacking, NotEqualStencilFunc, NumberKeyframeTrack, Object3D, ObjectLoader, OctahedronGeometry, Path, PlaneHelper, PointLight, PointLightHelper, Points, PointsMaterial, PolarGridHelper, PolyhedronGeometry, PositionalAudio, PropertyBinding, PropertyMixer, QuadraticBezierCurve, QuadraticBezierCurve3, Quaternion, QuaternionKeyframeTrack, QuaternionLinearInterpolant, RGBADepthPacking, RGBDepthPacking, RGBIntegerFormat, RGDepthPacking, Ray, Raycaster, RectAreaLight, RenderObjectRefreshType, RenderTarget, RenderTarget3D, ReplaceStencilOp, RingGeometry, Scene, ShadowMaterial, Shape, ShapeGeometry, ShapePath, ShapeUtils, Skeleton, SkeletonHelper, SkinnedMesh, Source, Sphere, SphereGeometry, Spherical, SphericalHarmonics3, SplineCurve, SpotLight, SpotLightHelper, Sprite, SpriteMaterial, StaticCopyUsage, StaticDrawUsage, StaticReadUsage, StereoCamera, StreamCopyUsage, StreamDrawUsage, StreamReadUsage, StringKeyframeTrack, TOUCH, TetrahedronGeometry, TextureLoader, TextureSource, TextureUtils, Timer, TimestampQuery, TorusGeometry, TorusKnotGeometry, Triangle, TriangleFanDrawMode, TriangleStripDrawMode, TrianglesDrawMode, TubeGeometry, UVMapping, Uint8BufferAttribute, Uint8ClampedBufferAttribute, Uniform, UniformsGroup, VectorKeyframeTrack, VideoFrameTexture, VideoTexture, WebGL3DRenderTarget, WebGLArrayRenderTarget, WebGPUCoordinateSystem, WireframeGeometry, WrapAroundEnding, ZeroCurvatureEnding, ZeroSlopeEnding, ZeroStencilOp, getConsoleFunction, setConsoleFunction } from './three.core.js';
 
 function WebGLAnimation() {
@@ -342,7 +342,7 @@ var color_vertex = "#if defined( USE_COLOR ) || defined( USE_COLOR_ALPHA ) || de
 
 var common = "#define PI 3.141592653589793\n#define PI2 6.283185307179586\n#define PI_HALF 1.5707963267948966\n#define RECIPROCAL_PI 0.3183098861837907\n#define RECIPROCAL_PI2 0.15915494309189535\n#define EPSILON 1e-6\n#ifndef saturate\n#define saturate( a ) clamp( a, 0.0, 1.0 )\n#endif\n#define whiteComplement( a ) ( 1.0 - saturate( a ) )\nfloat pow2( const in float x ) { return x*x; }\nvec3 pow2( const in vec3 x ) { return x*x; }\nfloat pow3( const in float x ) { return x*x*x; }\nfloat pow4( const in float x ) { float x2 = x*x; return x2*x2; }\nfloat max3( const in vec3 v ) { return max( max( v.x, v.y ), v.z ); }\nfloat average( const in vec3 v ) { return dot( v, vec3( 0.3333333 ) ); }\nhighp float rand( const in vec2 uv ) {\n\tconst highp float a = 12.9898, b = 78.233, c = 43758.5453;\n\thighp float dt = dot( uv.xy, vec2( a,b ) ), sn = mod( dt, PI );\n\treturn fract( sin( sn ) * c );\n}\n#ifdef HIGH_PRECISION\n\tfloat precisionSafeLength( vec3 v ) { return length( v ); }\n#else\n\tfloat precisionSafeLength( vec3 v ) {\n\t\tfloat maxComponent = max3( abs( v ) );\n\t\treturn length( v / maxComponent ) * maxComponent;\n\t}\n#endif\nstruct IncidentLight {\n\tvec3 color;\n\tvec3 direction;\n\tbool visible;\n};\nstruct ReflectedLight {\n\tvec3 directDiffuse;\n\tvec3 directSpecular;\n\tvec3 indirectDiffuse;\n\tvec3 indirectSpecular;\n};\n#ifdef USE_ALPHAHASH\n\tvarying vec3 vPosition;\n#endif\nvec3 transformDirection( in vec3 dir, in mat4 matrix ) {\n\treturn normalize( ( matrix * vec4( dir, 0.0 ) ).xyz );\n}\n#define inverseTransformDirection transformDirectionByInverseViewMatrix\nvec3 transformNormalByInverseViewMatrix( in vec3 normal, in mat4 viewMatrix ) {\n\treturn normalize( ( vec4( normal, 0.0 ) * viewMatrix ).xyz );\n}\nvec3 transformDirectionByInverseViewMatrix( in vec3 dir, in mat4 viewMatrix ) {\n\treturn normalize( ( vec4( dir, 0.0 ) * viewMatrix ).xyz );\n}\nbool isPerspectiveMatrix( mat4 m ) {\n\treturn m[ 2 ][ 3 ] == - 1.0;\n}\nvec2 equirectUv( in vec3 dir ) {\n\tfloat u = atan( dir.z, dir.x ) * RECIPROCAL_PI2 + 0.5;\n\tfloat v = asin( clamp( dir.y, - 1.0, 1.0 ) ) * RECIPROCAL_PI + 0.5;\n\treturn vec2( u, v );\n}\nvec3 BRDF_Lambert( const in vec3 diffuseColor ) {\n\treturn RECIPROCAL_PI * diffuseColor;\n}\nvec3 F_Schlick( const in vec3 f0, const in float f90, const in float dotVH ) {\n\tfloat fresnel = exp2( ( - 5.55473 * dotVH - 6.98316 ) * dotVH );\n\treturn f0 * ( 1.0 - fresnel ) + ( f90 * fresnel );\n}\nfloat F_Schlick( const in float f0, const in float f90, const in float dotVH ) {\n\tfloat fresnel = exp2( ( - 5.55473 * dotVH - 6.98316 ) * dotVH );\n\treturn f0 * ( 1.0 - fresnel ) + ( f90 * fresnel );\n} // validated";
 
-var cube_uv_reflection_fragment = "#ifdef ENVMAP_TYPE_CUBE_UV\n\t#define cubeUV_minMipLevel 4.0\n\t#define cubeUV_minTileSize 16.0\n\tfloat getFace( vec3 direction ) {\n\t\tvec3 absDirection = abs( direction );\n\t\tfloat face = - 1.0;\n\t\tif ( absDirection.x > absDirection.z ) {\n\t\t\tif ( absDirection.x > absDirection.y )\n\t\t\t\tface = direction.x > 0.0 ? 0.0 : 3.0;\n\t\t\telse\n\t\t\t\tface = direction.y > 0.0 ? 1.0 : 4.0;\n\t\t} else {\n\t\t\tif ( absDirection.z > absDirection.y )\n\t\t\t\tface = direction.z > 0.0 ? 2.0 : 5.0;\n\t\t\telse\n\t\t\t\tface = direction.y > 0.0 ? 1.0 : 4.0;\n\t\t}\n\t\treturn face;\n\t}\n\tvec2 getUV( vec3 direction, float face ) {\n\t\tvec2 uv;\n\t\tif ( face == 0.0 ) {\n\t\t\tuv = vec2( direction.z, direction.y ) / abs( direction.x );\n\t\t} else if ( face == 1.0 ) {\n\t\t\tuv = vec2( - direction.x, - direction.z ) / abs( direction.y );\n\t\t} else if ( face == 2.0 ) {\n\t\t\tuv = vec2( - direction.x, direction.y ) / abs( direction.z );\n\t\t} else if ( face == 3.0 ) {\n\t\t\tuv = vec2( - direction.z, direction.y ) / abs( direction.x );\n\t\t} else if ( face == 4.0 ) {\n\t\t\tuv = vec2( - direction.x, direction.z ) / abs( direction.y );\n\t\t} else {\n\t\t\tuv = vec2( direction.x, direction.y ) / abs( direction.z );\n\t\t}\n\t\treturn 0.5 * ( uv + 1.0 );\n\t}\n\tvec3 bilinearCubeUV( sampler2D envMap, vec3 direction, float mipInt ) {\n\t\tfloat face = getFace( direction );\n\t\tfloat filterInt = max( cubeUV_minMipLevel - mipInt, 0.0 );\n\t\tmipInt = max( mipInt, cubeUV_minMipLevel );\n\t\tfloat faceSize = exp2( mipInt );\n\t\thighp vec2 uv = getUV( direction, face ) * ( faceSize - 2.0 ) + 1.0;\n\t\tif ( face > 2.0 ) {\n\t\t\tuv.y += faceSize;\n\t\t\tface -= 3.0;\n\t\t}\n\t\tuv.x += face * faceSize;\n\t\tuv.x += filterInt * 3.0 * cubeUV_minTileSize;\n\t\tuv.y += 4.0 * ( exp2( CUBEUV_MAX_MIP ) - faceSize );\n\t\tuv.x *= CUBEUV_TEXEL_WIDTH;\n\t\tuv.y *= CUBEUV_TEXEL_HEIGHT;\n\t\t#ifdef texture2DGradEXT\n\t\t\treturn texture2DGradEXT( envMap, uv, vec2( 0.0 ), vec2( 0.0 ) ).rgb;\n\t\t#else\n\t\t\treturn texture2D( envMap, uv ).rgb;\n\t\t#endif\n\t}\n\t#define cubeUV_r0 1.0\n\t#define cubeUV_m0 - 2.0\n\t#define cubeUV_r1 0.8\n\t#define cubeUV_m1 - 1.0\n\t#define cubeUV_r4 0.4\n\t#define cubeUV_m4 2.0\n\t#define cubeUV_r5 0.305\n\t#define cubeUV_m5 3.0\n\t#define cubeUV_r6 0.21\n\t#define cubeUV_m6 4.0\n\tfloat roughnessToMip( float roughness ) {\n\t\tfloat mip = 0.0;\n\t\tif ( roughness >= cubeUV_r1 ) {\n\t\t\tmip = ( cubeUV_r0 - roughness ) * ( cubeUV_m1 - cubeUV_m0 ) / ( cubeUV_r0 - cubeUV_r1 ) + cubeUV_m0;\n\t\t} else if ( roughness >= cubeUV_r4 ) {\n\t\t\tmip = ( cubeUV_r1 - roughness ) * ( cubeUV_m4 - cubeUV_m1 ) / ( cubeUV_r1 - cubeUV_r4 ) + cubeUV_m1;\n\t\t} else if ( roughness >= cubeUV_r5 ) {\n\t\t\tmip = ( cubeUV_r4 - roughness ) * ( cubeUV_m5 - cubeUV_m4 ) / ( cubeUV_r4 - cubeUV_r5 ) + cubeUV_m4;\n\t\t} else if ( roughness >= cubeUV_r6 ) {\n\t\t\tmip = ( cubeUV_r5 - roughness ) * ( cubeUV_m6 - cubeUV_m5 ) / ( cubeUV_r5 - cubeUV_r6 ) + cubeUV_m5;\n\t\t} else {\n\t\t\tmip = - 2.0 * log2( 1.16 * roughness );\t\t}\n\t\treturn mip;\n\t}\n\tvec4 textureCubeUV( sampler2D envMap, vec3 sampleDir, float roughness ) {\n\t\tfloat mip = clamp( roughnessToMip( roughness ), cubeUV_m0, CUBEUV_MAX_MIP );\n\t\tfloat mipF = fract( mip );\n\t\tfloat mipInt = floor( mip );\n\t\tvec3 color0 = bilinearCubeUV( envMap, sampleDir, mipInt );\n\t\tif ( mipF == 0.0 ) {\n\t\t\treturn vec4( color0, 1.0 );\n\t\t} else {\n\t\t\tvec3 color1 = bilinearCubeUV( envMap, sampleDir, mipInt + 1.0 );\n\t\t\treturn vec4( mix( color0, color1, mipF ), 1.0 );\n\t\t}\n\t}\n#endif";
+var cube_uv_reflection_fragment = "#if defined( ENVMAP_TYPE_CUBE_UV ) || defined( ENVMAP_TYPE_CUBE )\n\tfloat getFace( vec3 direction ) {\n\t\tvec3 absDirection = abs( direction );\n\t\tfloat face = - 1.0;\n\t\tif ( absDirection.x > absDirection.z ) {\n\t\t\tif ( absDirection.x > absDirection.y )\n\t\t\t\tface = direction.x > 0.0 ? 0.0 : 3.0;\n\t\t\telse\n\t\t\t\tface = direction.y > 0.0 ? 1.0 : 4.0;\n\t\t} else {\n\t\t\tif ( absDirection.z > absDirection.y )\n\t\t\t\tface = direction.z > 0.0 ? 2.0 : 5.0;\n\t\t\telse\n\t\t\t\tface = direction.y > 0.0 ? 1.0 : 4.0;\n\t\t}\n\t\treturn face;\n\t}\n\tvec2 getUV( vec3 direction, float face ) {\n\t\tvec2 uv;\n\t\tif ( face == 0.0 ) {\n\t\t\tuv = vec2( direction.z, direction.y ) / abs( direction.x );\n\t\t} else if ( face == 1.0 ) {\n\t\t\tuv = vec2( - direction.x, - direction.z ) / abs( direction.y );\n\t\t} else if ( face == 2.0 ) {\n\t\t\tuv = vec2( - direction.x, direction.y ) / abs( direction.z );\n\t\t} else if ( face == 3.0 ) {\n\t\t\tuv = vec2( - direction.z, direction.y ) / abs( direction.x );\n\t\t} else if ( face == 4.0 ) {\n\t\t\tuv = vec2( - direction.x, direction.z ) / abs( direction.y );\n\t\t} else {\n\t\t\tuv = vec2( direction.x, direction.y ) / abs( direction.z );\n\t\t}\n\t\treturn 0.5 * ( uv + 1.0 );\n\t}\n#endif\n#ifdef ENVMAP_TYPE_CUBE_UV\n\t#define cubeUV_minMipLevel 4.0\n\t#define cubeUV_minTileSize 16.0\n\tvec3 bilinearCubeUV( sampler2D envMap, vec3 direction, float mipInt ) {\n\t\tfloat face = getFace( direction );\n\t\tfloat filterInt = max( cubeUV_minMipLevel - mipInt, 0.0 );\n\t\tmipInt = max( mipInt, cubeUV_minMipLevel );\n\t\tfloat faceSize = exp2( mipInt );\n\t\thighp vec2 uv = getUV( direction, face ) * ( faceSize - 2.0 ) + 1.0;\n\t\tif ( face > 2.0 ) {\n\t\t\tuv.y += faceSize;\n\t\t\tface -= 3.0;\n\t\t}\n\t\tuv.x += face * faceSize;\n\t\tuv.x += filterInt * 3.0 * cubeUV_minTileSize;\n\t\tuv.y += 4.0 * ( exp2( CUBEUV_MAX_MIP ) - faceSize );\n\t\tuv.x *= CUBEUV_TEXEL_WIDTH;\n\t\tuv.y *= CUBEUV_TEXEL_HEIGHT;\n\t\t#ifdef texture2DGradEXT\n\t\t\treturn texture2DGradEXT( envMap, uv, vec2( 0.0 ), vec2( 0.0 ) ).rgb;\n\t\t#else\n\t\t\treturn texture2D( envMap, uv ).rgb;\n\t\t#endif\n\t}\n\t#define cubeUV_r0 1.0\n\t#define cubeUV_m0 - 2.0\n\t#define cubeUV_r1 0.8\n\t#define cubeUV_m1 - 1.0\n\t#define cubeUV_r4 0.4\n\t#define cubeUV_m4 2.0\n\t#define cubeUV_r5 0.305\n\t#define cubeUV_m5 3.0\n\t#define cubeUV_r6 0.21\n\t#define cubeUV_m6 4.0\n\tfloat roughnessToMip( float roughness ) {\n\t\tfloat mip = 0.0;\n\t\tif ( roughness >= cubeUV_r1 ) {\n\t\t\tmip = ( cubeUV_r0 - roughness ) * ( cubeUV_m1 - cubeUV_m0 ) / ( cubeUV_r0 - cubeUV_r1 ) + cubeUV_m0;\n\t\t} else if ( roughness >= cubeUV_r4 ) {\n\t\t\tmip = ( cubeUV_r1 - roughness ) * ( cubeUV_m4 - cubeUV_m1 ) / ( cubeUV_r1 - cubeUV_r4 ) + cubeUV_m1;\n\t\t} else if ( roughness >= cubeUV_r5 ) {\n\t\t\tmip = ( cubeUV_r4 - roughness ) * ( cubeUV_m5 - cubeUV_m4 ) / ( cubeUV_r4 - cubeUV_r5 ) + cubeUV_m4;\n\t\t} else if ( roughness >= cubeUV_r6 ) {\n\t\t\tmip = ( cubeUV_r5 - roughness ) * ( cubeUV_m6 - cubeUV_m5 ) / ( cubeUV_r5 - cubeUV_r6 ) + cubeUV_m5;\n\t\t} else {\n\t\t\tmip = - 2.0 * log2( 1.16 * roughness );\t\t}\n\t\treturn mip;\n\t}\n\tvec4 textureCubeUV( sampler2D envMap, vec3 sampleDir, float roughness ) {\n\t\tfloat mip = clamp( roughnessToMip( roughness ), cubeUV_m0, CUBEUV_MAX_MIP );\n\t\tfloat mipF = fract( mip );\n\t\tfloat mipInt = floor( mip );\n\t\tvec3 color0 = bilinearCubeUV( envMap, sampleDir, mipInt );\n\t\tif ( mipF == 0.0 ) {\n\t\t\treturn vec4( color0, 1.0 );\n\t\t} else {\n\t\t\tvec3 color1 = bilinearCubeUV( envMap, sampleDir, mipInt + 1.0 );\n\t\t\treturn vec4( mix( color0, color1, mipF ), 1.0 );\n\t\t}\n\t}\n#endif";
 
 var defaultnormal_vertex = "vec3 transformedNormal = objectNormal;\n#ifdef USE_TANGENT\n\tvec3 transformedTangent = objectTangent;\n#endif\n#ifdef USE_BATCHING\n\tmat3 bm = mat3( batchingMatrix );\n\ttransformedNormal /= vec3( dot( bm[ 0 ], bm[ 0 ] ), dot( bm[ 1 ], bm[ 1 ] ), dot( bm[ 2 ], bm[ 2 ] ) );\n\ttransformedNormal = bm * transformedNormal;\n\t#ifdef USE_TANGENT\n\t\ttransformedTangent = bm * transformedTangent;\n\t#endif\n#endif\n#ifdef USE_INSTANCING\n\tmat3 im = mat3( instanceMatrix );\n\ttransformedNormal /= vec3( dot( im[ 0 ], im[ 0 ] ), dot( im[ 1 ], im[ 1 ] ), dot( im[ 2 ], im[ 2 ] ) );\n\ttransformedNormal = im * transformedNormal;\n\t#ifdef USE_TANGENT\n\t\ttransformedTangent = im * transformedTangent;\n\t#endif\n#endif\ntransformedNormal = normalMatrix * transformedNormal;\n#ifdef FLIP_SIDED\n\ttransformedNormal = - transformedNormal;\n#endif\n#ifdef USE_TANGENT\n\ttransformedTangent = ( modelViewMatrix * vec4( transformedTangent, 0.0 ) ).xyz;\n#endif";
 
@@ -516,7 +516,7 @@ const fragment$h = "uniform sampler2D t2D;\nuniform float backgroundIntensity;\n
 
 const vertex$g = "varying vec3 vWorldDirection;\n#include <common>\nvoid main() {\n\tvWorldDirection = transformDirection( position, modelMatrix );\n\t#include <begin_vertex>\n\t#include <project_vertex>\n\tgl_Position.z = gl_Position.w;\n}";
 
-const fragment$g = "#ifdef ENVMAP_TYPE_CUBE\n\tuniform samplerCube envMap;\n#elif defined( ENVMAP_TYPE_CUBE_UV )\n\tuniform sampler2D envMap;\n#endif\nuniform float backgroundBlurriness;\nuniform float backgroundIntensity;\nuniform mat3 backgroundRotation;\nvarying vec3 vWorldDirection;\n#include <cube_uv_reflection_fragment>\nvoid main() {\n\t#ifdef ENVMAP_TYPE_CUBE\n\t\tvec4 texColor = textureCube( envMap, backgroundRotation * vWorldDirection );\n\t#elif defined( ENVMAP_TYPE_CUBE_UV )\n\t\tvec4 texColor = textureCubeUV( envMap, backgroundRotation * vWorldDirection, backgroundBlurriness );\n\t#else\n\t\tvec4 texColor = vec4( 0.0, 0.0, 0.0, 1.0 );\n\t#endif\n\ttexColor.rgb *= backgroundIntensity;\n\tgl_FragColor = texColor;\n\t#include <tonemapping_fragment>\n\t#include <colorspace_fragment>\n}";
+const fragment$g = "#ifdef ENVMAP_TYPE_CUBE\n\tuniform samplerCube envMap;\n#elif defined( ENVMAP_TYPE_CUBE_UV )\n\tuniform sampler2D envMap;\n#endif\nuniform float backgroundBlurriness;\nuniform float backgroundIntensity;\nuniform mat3 backgroundRotation;\nvarying vec3 vWorldDirection;\n#include <cube_uv_reflection_fragment>\n#ifdef ENVMAP_TYPE_CUBE\n\tvec3 cubeFaceDir( float face, vec2 uv ) {\n\t\tvec2 st = 2.0 * uv - 1.0;\n\t\tvec2 over = min( max( abs( st ) - 1.0, 0.0 ), 0.75 );\n\t\tst = clamp( st, - 1.0, 1.0 ) / ( ( 1.0 - over.x ) * ( 1.0 - over.y ) );\n\t\tif ( face == 0.0 ) return vec3( 1.0, st.y, st.x );\n\t\tif ( face == 1.0 ) return vec3( - st.x, 1.0, - st.y );\n\t\tif ( face == 2.0 ) return vec3( - st.x, st.y, 1.0 );\n\t\tif ( face == 3.0 ) return vec3( - 1.0, st.y, - st.x );\n\t\tif ( face == 4.0 ) return vec3( - st.x, - 1.0, st.y );\n\t\treturn vec3( st.x, st.y, - 1.0 );\n\t}\n\tvec4 sampleBlurred( vec3 direction ) {\n\t\tfloat size = float( textureSize( envMap, 0 ).x );\n\t\tfloat face = getFace( direction );\n\t\tvec2 uv = getUV( direction, face );\n\t\tvec2 p = uv * size - 0.5;\n\t\tvec2 i = floor( p );\n\t\tvec2 f = p - i;\n\t\tvec2 f2 = f * f;\n\t\tvec2 f3 = f2 * f;\n\t\tvec2 w0 = ( 1.0 - 3.0 * f + 3.0 * f2 - f3 ) / 6.0;\n\t\tvec2 w1 = ( 4.0 - 6.0 * f2 + 3.0 * f3 ) / 6.0;\n\t\tvec2 w2 = ( 1.0 + 3.0 * f + 3.0 * f2 - 3.0 * f3 ) / 6.0;\n\t\tvec2 w3 = f3 / 6.0;\n\t\tvec2 s0 = w0 + w1;\n\t\tvec2 s1 = w2 + w3;\n\t\tvec2 t0 = ( i - 0.5 + w1 / s0 ) / size;\n\t\tvec2 t1 = ( i + 1.5 + w3 / s1 ) / size;\n\t\tvec4 color = textureCube( envMap, cubeFaceDir( face, vec2( t0.x, t0.y ) ) ) * s0.x * s0.y\n\t\t\t+ textureCube( envMap, cubeFaceDir( face, vec2( t1.x, t0.y ) ) ) * s1.x * s0.y\n\t\t\t+ textureCube( envMap, cubeFaceDir( face, vec2( t0.x, t1.y ) ) ) * s0.x * s1.y\n\t\t\t+ textureCube( envMap, cubeFaceDir( face, vec2( t1.x, t1.y ) ) ) * s1.x * s1.y;\n\t\tvec2 st = abs( 2.0 * uv - 1.0 );\n\t\tfloat texel = 2.0 / size;\n\t\tfloat corner = smoothstep( texel, 2.0 * texel, 1.0 - min( st.x, st.y ) );\n\t\tif ( corner < 1.0 ) color = mix( textureCube( envMap, direction ), color, corner );\n\t\treturn color;\n\t}\n#endif\nvoid main() {\n\tvec3 direction = backgroundRotation * vWorldDirection;\n\t#ifdef ENVMAP_TYPE_CUBE\n\t\tvec4 texColor = backgroundBlurriness > 0.0 ? sampleBlurred( direction ) : textureCube( envMap, direction );\n\t#elif defined( ENVMAP_TYPE_CUBE_UV )\n\t\tvec4 texColor = textureCubeUV( envMap, direction, 0.0 );\n\t#else\n\t\tvec4 texColor = vec4( 0.0, 0.0, 0.0, 1.0 );\n\t#endif\n\ttexColor.rgb *= backgroundIntensity;\n\tgl_FragColor = texColor;\n\t#include <tonemapping_fragment>\n\t#include <colorspace_fragment>\n}";
 
 const vertex$f = "varying vec3 vWorldDirection;\n#include <common>\nvoid main() {\n\tvWorldDirection = transformDirection( position, modelMatrix );\n\t#include <begin_vertex>\n\t#include <project_vertex>\n\tgl_Position.z = gl_Position.w;\n}";
 
@@ -1348,8 +1348,15 @@ function WebGLBackground( renderer, environments, state, objects, alpha, premult
 
 		if ( background && background.isTexture ) {
 
-			const usePMREM = scene.backgroundBlurriness > 0; // use PMREM if the user wants to blur the background
-			background = environments.get( background, usePMREM );
+			if ( scene.backgroundBlurriness > 0 ) {
+
+				background = environments.getBlurred( background, scene.backgroundBlurriness );
+
+			} else {
+
+				background = environments.get( background );
+
+			}
 
 		}
 
@@ -3678,6 +3685,12 @@ function _getCommonVertexShader() {
 
 }
 
+const copyFragment = "#include <common>\n#include <cube_uv_reflection_fragment>\n#ifdef ENVMAP_TYPE_CUBE\n\tuniform samplerCube envMap;\n\tuniform float flipEnvMap;\n#else\n\tuniform sampler2D envMap;\n#endif\nvarying vec3 vWorldDirection;\nvec3 sampleSource( vec3 direction ) {\n\t#if defined( ENVMAP_TYPE_CUBE )\n\t\treturn textureCubeLodEXT( envMap, vec3( flipEnvMap * direction.x, direction.yz ), 0.0 ).rgb;\n\t#elif defined( ENVMAP_TYPE_CUBE_UV )\n\t\treturn textureCubeUV( envMap, direction, 0.0 ).rgb;\n\t#else\n\t\treturn texture2DLodEXT( envMap, equirectUv( direction ), 0.0 ).rgb;\n\t#endif\n}\nvoid main() {\n\tvec3 dx = dFdx( vWorldDirection ) / float( SUPERSAMPLING );\n\tvec3 dy = dFdy( vWorldDirection ) / float( SUPERSAMPLING );\n\tvec3 origin = vWorldDirection - ( dx + dy ) * 0.5 * float( SUPERSAMPLING - 1 );\n\tvec3 color = vec3( 0.0 );\n\tfor ( int i = 0; i < SUPERSAMPLING; i ++ ) {\n\t\tfor ( int j = 0; j < SUPERSAMPLING; j ++ ) {\n\t\t\tcolor += sampleSource( normalize( origin + float( i ) * dx + float( j ) * dy ) );\n\t\t}\n\t}\n\tgl_FragColor = vec4( color / float( SUPERSAMPLING * SUPERSAMPLING ), 1.0 );\n}";
+
+const blurFragment = "#include <common>\nuniform samplerCube envMap;\nuniform float sigma;\nuniform float level;\nuniform float spacing;\nuniform int radius;\nvarying vec3 vWorldDirection;\nvoid main() {\n\tvec3 direction = normalize( vWorldDirection );\n\tvec3 up = abs( direction.z ) < 0.999 ? vec3( 0.0, 0.0, 1.0 ) : vec3( 1.0, 0.0, 0.0 );\n\tvec3 tangent = normalize( cross( up, direction ) );\n\tvec3 bitangent = cross( direction, tangent );\n\tfloat k = - 0.5 / ( sigma * sigma );\n\tvec3 color = vec3( 0.0 );\n\tfloat weightSum = 0.0;\n\tfor ( int i = - radius; i <= radius; i ++ ) {\n\t\tfor ( int j = 0; j <= radius; j ++ ) {\n\t\t\tvec2 offset = vec2( float( i ), float( j ) ) * spacing;\n\t\t\tfloat r2 = dot( offset, offset );\n\t\t\tfloat theta = atan( sqrt( r2 ) );\n\t\t\tfloat weight = exp( k * theta * theta ) * inversesqrt( ( 1.0 + r2 ) * ( 1.0 + r2 ) * ( 1.0 + r2 ) );\n\t\t\tcolor += weight * textureCubeLodEXT( envMap, direction + offset.x * tangent + offset.y * bitangent, level ).rgb;\n\t\t\tweightSum += weight;\n\t\t\tif ( j > 0 ) {\n\t\t\t\tcolor += weight * textureCubeLodEXT( envMap, direction + offset.x * tangent - offset.y * bitangent, level ).rgb;\n\t\t\t\tweightSum += weight;\n\t\t\t}\n\t\t}\n\t}\n\tgl_FragColor = vec4( color / weightSum, 1.0 );\n}";
+
+const sphereFragment = "#include <common>\nuniform samplerCube envMap;\nuniform float sigma;\nvarying vec3 vWorldDirection;\nvoid main() {\n\tvec3 direction = normalize( vWorldDirection );\n\tfloat k = - 0.5 / ( sigma * sigma );\n\tvec3 color = vec3( 0.0 );\n\tfloat weightSum = 0.0;\n\tfor ( int t = 0; t < 3 * SIZE * SIZE; t ++ ) {\n\t\tint axis = t / ( SIZE * SIZE );\n\t\tint texel = t - axis * SIZE * SIZE;\n\t\tvec2 st = ( vec2( float( texel % SIZE ), float( texel / SIZE ) ) + 0.5 ) / float( SIZE ) * 2.0 - 1.0;\n\t\tvec3 d = axis == 0 ? vec3( 1.0, st ) : axis == 1 ? vec3( st.x, 1.0, st.y ) : vec3( st, 1.0 );\n\t\tfloat r2 = dot( d, d );\n\t\tfloat solidAngle = inversesqrt( r2 * r2 * r2 );\n\t\tfloat theta = acos( clamp( dot( direction, d * inversesqrt( r2 ) ), - 1.0, 1.0 ) );\n\t\tfloat weight = exp( k * theta * theta ) * solidAngle;\n\t\tcolor += weight * textureCubeLodEXT( envMap, d, LEVEL ).rgb;\n\t\tweightSum += weight;\n\t\ttheta = PI - theta;\n\t\tweight = exp( k * theta * theta ) * solidAngle;\n\t\tcolor += weight * textureCubeLodEXT( envMap, - d, LEVEL ).rgb;\n\t\tweightSum += weight;\n\t}\n\tgl_FragColor = vec4( color / weightSum, 1.0 );\n}";
+
 /**
  * A cube render target used in context of {@link WebGLRenderer}.
  *
@@ -3850,12 +3863,275 @@ class WebGLCubeRenderTarget extends WebGLRenderTarget {
 
 }
 
+// sharp copy of the environment, its mip chain feeds the blur
+const SOURCE_SIZE = 256;
+const SUPERSAMPLING = 4;
+
+// the blurred cube map is sized so sigma spans 1.5 to 3 of its texels, down to this size
+const SIGMA_TEXELS = 3;
+const MIN_SIZE = 16;
+
+// taps at the source texel spacing cover 3.5 sigma, the source level has twice the target's size where available
+const TAP_RADIUS = 12;
+
+// the smallest size blurs too wide for a tangent plane and sums every texel of this source level instead
+const SPHERE_SOURCE_SIZE = 32;
+
+/**
+ * Blurs an environment map with an angular Gaussian into a cube map, the way a real
+ * blur of the background would look. The result is sized to the blur: from 256 faces
+ * for the finest blur down to 16 for the average of the whole map.
+ *
+ * The renderer uses it for {@link Scene#backgroundBlurriness}.
+ *
+ * @private
+ */
+class CubemapBlurGenerator {
+
+	/**
+	 * Constructs a new cubemap blur generator.
+	 *
+	 * @param {WebGLRenderer} renderer - The renderer.
+	 */
+	constructor( renderer ) {
+
+		this._renderer = renderer;
+		this._mesh = new Mesh( new BoxGeometry( 5, 5, 5 ), null );
+		this._cubeCamera = new CubeCamera( 1, 10, null );
+
+		this._source = null;
+		this._sourceTexture = null;
+		this._sourceVersion = -1;
+
+		this._copyMaterial = null;
+		this._blurMaterial = null;
+		this._sphereMaterial = null;
+
+	}
+
+	/**
+	 * Blurs an equirectangular, cube or PMREM (cubeUV) texture. Blurriness `1 / 9` gives a
+	 * sigma of 0.9 degrees, every further `1 / 9` doubles it up to the average of the whole
+	 * map at `1`, below `1 / 9` the blur ramps down to sharp.
+	 *
+	 * @param {Texture} texture - The environment texture.
+	 * @param {number} blurriness - The blurriness in the range `[0,1]`.
+	 * @param {?WebGLCubeRenderTarget} [renderTarget=null] - A previous result to update, replaced when its size does not fit.
+	 * @return {WebGLCubeRenderTarget} The cube render target with the blurred environment.
+	 */
+	fromTexture( texture, blurriness, renderTarget = null ) {
+
+		const renderer = this._renderer;
+
+		const sigma = _getSigma( blurriness );
+		const size = Math.min( Math.max( floorPowerOfTwo( SIGMA_TEXELS * 2 / sigma ), MIN_SIZE ), SOURCE_SIZE );
+
+		if ( renderTarget !== null && renderTarget.width !== size ) {
+
+			renderTarget.dispose();
+			renderTarget = null;
+
+		}
+
+		const target = renderTarget || _createTarget( size );
+
+		const autoClear = renderer.autoClear;
+		renderer.autoClear = false;
+
+		this._copy( texture );
+		this._blur( target, sigma );
+
+		renderer.autoClear = autoClear;
+
+		return target;
+
+	}
+
+	/**
+	 * Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
+	 */
+	dispose() {
+
+		if ( this._source !== null ) this._source.dispose();
+		if ( this._copyMaterial !== null ) this._copyMaterial.dispose();
+		if ( this._blurMaterial !== null ) this._blurMaterial.dispose();
+		if ( this._sphereMaterial !== null ) this._sphereMaterial.dispose();
+
+		this._mesh.geometry.dispose();
+
+	}
+
+	// private interface
+
+	_copy( texture ) {
+
+		if ( this._sourceTexture === texture && this._sourceVersion === texture.pmremVersion ) return;
+
+		if ( this._source === null ) this._source = _createTarget( SOURCE_SIZE, true );
+
+		if ( this._copyMaterial === null ) this._copyMaterial = _createCopyMaterial();
+
+		const uniforms = this._copyMaterial.uniforms;
+
+		uniforms.envMap.value = texture;
+		uniforms.flipEnvMap.value = ( texture.isCubeTexture && texture.isRenderTargetTexture === false ) ? -1 : 1;
+
+		this._render( this._copyMaterial, this._source );
+
+		this._sourceTexture = texture;
+		this._sourceVersion = texture.pmremVersion;
+
+	}
+
+	_blur( target, sigma ) {
+
+		const size = target.width;
+		const sourceSize = Math.min( 2 * size, SOURCE_SIZE );
+
+		// tap spacing is the source texel angle at the face center
+		const spacing = 2 / sourceSize;
+
+		// the taps interpolate the source bilinearly and the background reconstructs the result
+		// with a cubic B-spline, remove the variance both add
+		const texel = 2 / size;
+		const bakeSigma = Math.max( Math.sqrt( Math.max( sigma * sigma - texel * texel / 3 - spacing * spacing / 6, 0 ) ), 0.25 * texel );
+
+		let material;
+
+		if ( size > MIN_SIZE ) {
+
+			if ( this._blurMaterial === null ) this._blurMaterial = _createBlurMaterial();
+
+			material = this._blurMaterial;
+			material.uniforms.radius.value = TAP_RADIUS * sourceSize / size;
+			material.uniforms.level.value = Math.log2( SOURCE_SIZE / sourceSize );
+			material.uniforms.spacing.value = spacing;
+
+		} else {
+
+			if ( this._sphereMaterial === null ) this._sphereMaterial = _createSphereMaterial();
+
+			material = this._sphereMaterial;
+
+		}
+
+		material.uniforms.envMap.value = this._source.texture;
+		material.uniforms.sigma.value = bakeSigma;
+
+		this._render( material, target );
+
+	}
+
+	_render( material, target ) {
+
+		this._mesh.material = material;
+		this._cubeCamera.renderTarget = target;
+		this._cubeCamera.update( this._renderer, this._mesh );
+
+	}
+
+}
+
+// sigma in radians for a blurriness in [ 0, 1 ]
+function _getSigma( blurriness ) {
+
+	const t = blurriness * 9 - 1;
+
+	return ( t < 0 ? Math.max( t + 1, 0 ) : Math.pow( 2, t ) ) / 64;
+
+}
+
+function _createTarget( size, mipmaps = false ) {
+
+	return new WebGLCubeRenderTarget( size, {
+		type: HalfFloatType,
+		colorSpace: LinearSRGBColorSpace,
+		minFilter: mipmaps ? LinearMipmapLinearFilter : LinearFilter,
+		magFilter: LinearFilter,
+		generateMipmaps: mipmaps,
+		depthBuffer: false
+	} );
+
+}
+
+function _createMaterial( name, defines, uniforms, fragmentShader ) {
+
+	return new ShaderMaterial( {
+
+		name: name,
+		defines: defines,
+		uniforms: uniforms,
+		vertexShader: ShaderLib.cube.vertexShader,
+		fragmentShader: fragmentShader,
+		side: BackSide,
+		blending: NoBlending,
+		depthTest: false,
+		depthWrite: false
+
+	} );
+
+}
+
+function _createCopyMaterial() {
+
+	const material = _createMaterial( 'CubemapBlurCopy', { 'SUPERSAMPLING': SUPERSAMPLING }, {
+
+		'envMap': { value: null },
+		'flipEnvMap': { value: 1 }
+
+	}, copyFragment );
+
+	// let the renderer derive the ENVMAP_TYPE_* and CUBEUV_* defines from the source texture,
+	// equirectangular textures fall through to the last branch of the shader
+	Object.defineProperty( material, 'envMap', {
+
+		get: function () {
+
+			const texture = this.uniforms.envMap.value;
+
+			return ( texture !== null && ( texture.isCubeTexture || texture.mapping === CubeUVReflectionMapping ) ) ? texture : null;
+
+		}
+
+	} );
+
+	return material;
+
+}
+
+function _createBlurMaterial() {
+
+	return _createMaterial( 'CubemapBlur', {}, {
+
+		'envMap': { value: null },
+		'sigma': { value: 0 },
+		'level': { value: 0 },
+		'spacing': { value: 0 },
+		'radius': { value: 0 }
+
+	}, blurFragment );
+
+}
+
+function _createSphereMaterial() {
+
+	return _createMaterial( 'CubemapBlurSphere', { 'SIZE': SPHERE_SOURCE_SIZE, 'LEVEL': Math.log2( SOURCE_SIZE / SPHERE_SOURCE_SIZE ) + '.0' }, {
+
+		'envMap': { value: null },
+		'sigma': { value: 0 }
+
+	}, sphereFragment );
+
+}
+
 function WebGLEnvironments( renderer ) {
 
 	let cubeMaps = new WeakMap();
 	let pmremMaps = new WeakMap();
+	let blurMaps = new WeakMap();
 
 	let pmremGenerator = null;
+	let blurGenerator = null;
 
 	function get( texture, usePMREM = false ) {
 
@@ -3987,6 +4263,55 @@ function WebGLEnvironments( renderer ) {
 
 	}
 
+	// blurred cube map for Scene.backgroundBlurriness, see CubemapBlurGenerator
+
+	function getBlurred( texture, blurriness ) {
+
+		if ( texture && texture.isTexture ) {
+
+			const mapping = texture.mapping;
+
+			const isEquirectMap = ( mapping === EquirectangularReflectionMapping || mapping === EquirectangularRefractionMapping );
+			const isCubeMap = ( mapping === CubeReflectionMapping || mapping === CubeRefractionMapping );
+
+			if ( isEquirectMap || isCubeMap || mapping === CubeUVReflectionMapping ) {
+
+				let entry = blurMaps.get( texture );
+
+				if ( entry === undefined || entry.blurriness !== blurriness || entry.pmremVersion !== texture.pmremVersion ) {
+
+					const image = texture.image;
+					const ready = isCubeMap ? ( image && isCubeTextureComplete( image ) ) : ( image && image.height > 0 );
+
+					if ( ! ready ) return null; // image not yet ready. try the conversion next frame
+
+					if ( blurGenerator === null ) blurGenerator = new CubemapBlurGenerator( renderer );
+
+					if ( entry === undefined ) {
+
+						entry = { renderTarget: null };
+						blurMaps.set( texture, entry );
+
+						texture.addEventListener( 'dispose', onBlurDispose );
+
+					}
+
+					entry.renderTarget = blurGenerator.fromTexture( texture, blurriness, entry.renderTarget );
+					entry.blurriness = blurriness;
+					entry.pmremVersion = texture.pmremVersion;
+
+				}
+
+				return entry.renderTarget.texture;
+
+			}
+
+		}
+
+		return texture;
+
+	}
+
 	function mapTextureMapping( texture, mapping ) {
 
 		if ( mapping === EquirectangularReflectionMapping ) {
@@ -4052,10 +4377,28 @@ function WebGLEnvironments( renderer ) {
 
 	}
 
+	function onBlurDispose( event ) {
+
+		const texture = event.target;
+
+		texture.removeEventListener( 'dispose', onBlurDispose );
+
+		const entry = blurMaps.get( texture );
+
+		if ( entry !== undefined ) {
+
+			blurMaps.delete( texture );
+			entry.renderTarget.dispose();
+
+		}
+
+	}
+
 	function dispose() {
 
 		cubeMaps = new WeakMap();
 		pmremMaps = new WeakMap();
+		blurMaps = new WeakMap();
 
 		if ( pmremGenerator !== null ) {
 
@@ -4064,10 +4407,18 @@ function WebGLEnvironments( renderer ) {
 
 		}
 
+		if ( blurGenerator !== null ) {
+
+			blurGenerator.dispose();
+			blurGenerator = null;
+
+		}
+
 	}
 
 	return {
 		get: get,
+		getBlurred: getBlurred,
 		dispose: dispose
 	};
 

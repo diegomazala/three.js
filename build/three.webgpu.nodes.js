@@ -3,7 +3,7 @@
  * Copyright 2010-2026 Three.js Authors
  * SPDX-License-Identifier: MIT
  */
-import { DynamicDrawUsage, RenderObjectRefreshType, Color, Vector2, Vector3, Vector4, Matrix2, Matrix3, Matrix4, error, UnsignedIntType, IntType, RedFormat, RedIntegerFormat, DepthFormat, DepthStencilFormat, AlphaFormat, RGFormat, RGIntegerFormat, RGBFormat, RGBIntegerFormat, EventDispatcher, MathUtils, warn, WebGLCoordinateSystem, WebGPUCoordinateSystem, ColorManagement, SRGBTransfer, NoToneMapping, StaticDrawUsage, InterleavedBufferAttribute, InterleavedBuffer, NoColorSpace, log as log$1, warnOnce, Texture, Compatibility, LessCompare, LessEqualCompare, GreaterCompare, GreaterEqualCompare, NearestFilter, Sphere, BackSide, DoubleSide, CubeTexture, CubeReflectionMapping, CubeRefractionMapping, TangentSpaceNormalMap, NoNormalPacking, NormalRGPacking, NormalGAPacking, ObjectSpaceNormalMap, RED_GREEN_RGTC2_Format, RG11_EAC_Format, InstancedBufferAttribute, InstancedInterleavedBuffer, DataTexture, RGBAFormat, FloatType, DataArrayTexture, FramebufferTexture, LinearMipmapLinearFilter, DepthTexture, Material, LineBasicMaterial, LineDashedMaterial, NoBlending, MeshNormalMaterial, SRGBColorSpace, RenderTarget, BoxGeometry, Mesh, Scene, LinearFilter, CubeCamera, EquirectangularReflectionMapping, EquirectangularRefractionMapping, AddOperation, MixOperation, MultiplyOperation, MeshBasicMaterial, MeshLambertMaterial, MeshPhongMaterial, HalfFloatType, ClampToEdgeWrapping, BufferGeometry, OrthographicCamera, PerspectiveCamera, LinearSRGBColorSpace, CubeUVReflectionMapping, BufferAttribute, MeshStandardMaterial, MeshPhysicalMaterial, MeshToonMaterial, MeshMatcapMaterial, SpriteMaterial, PointsMaterial, ShadowMaterial, Uint32BufferAttribute, Uint16BufferAttribute, ByteType, UnsignedByteType, ShortType, UnsignedShortType, UnsignedShort4444Type, UnsignedShort5551Type, UnsignedInt248Type, UnsignedInt5999Type, UnsignedInt101111Type, NormalBlending, SrcAlphaFactor, OneMinusSrcAlphaFactor, AddEquation, MaterialBlending, Object3D, LinearMipMapLinearFilter, Plane, Float32BufferAttribute, UVMapping, VSMShadowMap, PCFShadowMap, BasicShadowMap, CubeDepthTexture, SphereGeometry, LinearMipmapNearestFilter, NearestMipmapLinearFilter, Float16BufferAttribute, yieldToMain, REVISION, ArrayCamera, PlaneGeometry, FrontSide, CustomBlending, ZeroFactor, CylinderGeometry, Quaternion, WebXRController, RAD2DEG, PCFSoftShadowMap, FrustumArray, Frustum, RGBAIntegerFormat, TimestampQuery, createCanvasElement, MaxEquation, MinEquation, ReverseSubtractEquation, SubtractEquation, OneMinusConstantAlphaFactor, ConstantAlphaFactor, OneMinusConstantColorFactor, ConstantColorFactor, OneMinusDstAlphaFactor, OneMinusDstColorFactor, OneMinusSrcColorFactor, DstAlphaFactor, DstColorFactor, SrcAlphaSaturateFactor, SrcColorFactor, OneFactor, CullFaceNone, CullFaceBack, CullFaceFront, MultiplyBlending, SubtractiveBlending, AdditiveBlending, NotEqualDepth, GreaterDepth, GreaterEqualDepth, EqualDepth, LessEqualDepth, LessDepth, AlwaysDepth, NeverDepth, ReversedDepthFuncs, RGB_S3TC_DXT1_Format, RGBA_S3TC_DXT1_Format, RGBA_S3TC_DXT3_Format, RGBA_S3TC_DXT5_Format, RGB_PVRTC_4BPPV1_Format, RGB_PVRTC_2BPPV1_Format, RGBA_PVRTC_4BPPV1_Format, RGBA_PVRTC_2BPPV1_Format, RGB_ETC1_Format, RGB_ETC2_Format, RGBA_ETC2_EAC_Format, R11_EAC_Format, SIGNED_R11_EAC_Format, SIGNED_RG11_EAC_Format, RGBA_ASTC_4x4_Format, RGBA_ASTC_5x4_Format, RGBA_ASTC_5x5_Format, RGBA_ASTC_6x5_Format, RGBA_ASTC_6x6_Format, RGBA_ASTC_8x5_Format, RGBA_ASTC_8x6_Format, RGBA_ASTC_8x8_Format, RGBA_ASTC_10x5_Format, RGBA_ASTC_10x6_Format, RGBA_ASTC_10x8_Format, RGBA_ASTC_10x10_Format, RGBA_ASTC_12x10_Format, RGBA_ASTC_12x12_Format, RGBA_BPTC_Format, RGB_BPTC_SIGNED_Format, RGB_BPTC_UNSIGNED_Format, RED_RGTC1_Format, SIGNED_RED_RGTC1_Format, SIGNED_RED_GREEN_RGTC2_Format, MirroredRepeatWrapping, RepeatWrapping, NearestMipmapNearestFilter, NotEqualCompare, EqualCompare, AlwaysCompare, NeverCompare, LinearTransfer, getByteLength, isTypedArray, NotEqualStencilFunc, GreaterStencilFunc, GreaterEqualStencilFunc, EqualStencilFunc, LessEqualStencilFunc, LessStencilFunc, AlwaysStencilFunc, NeverStencilFunc, DecrementWrapStencilOp, IncrementWrapStencilOp, DecrementStencilOp, IncrementStencilOp, InvertStencilOp, ReplaceStencilOp, ZeroStencilOp, KeepStencilOp, SpotLight, PointLight, DirectionalLight, RectAreaLight, AmbientLight, HemisphereLight, LightProbe, LinearToneMapping, ReinhardToneMapping, CineonToneMapping, ACESFilmicToneMapping, AgXToneMapping, NeutralToneMapping, Group, Loader, FileLoader, MaterialLoader, ObjectLoader } from './three.core.js';
+import { DynamicDrawUsage, RenderObjectRefreshType, Color, Vector2, Vector3, Vector4, Matrix2, Matrix3, Matrix4, error, UnsignedIntType, IntType, RedFormat, RedIntegerFormat, DepthFormat, DepthStencilFormat, AlphaFormat, RGFormat, RGIntegerFormat, RGBFormat, RGBIntegerFormat, EventDispatcher, MathUtils, warn, WebGLCoordinateSystem, WebGPUCoordinateSystem, ColorManagement, SRGBTransfer, NoToneMapping, StaticDrawUsage, InterleavedBufferAttribute, InterleavedBuffer, NoColorSpace, log as log$1, warnOnce, Texture, Compatibility, LessCompare, LessEqualCompare, GreaterCompare, GreaterEqualCompare, NearestFilter, Sphere, BackSide, DoubleSide, CubeTexture, CubeReflectionMapping, CubeRefractionMapping, TangentSpaceNormalMap, NoNormalPacking, NormalRGPacking, NormalGAPacking, ObjectSpaceNormalMap, RED_GREEN_RGTC2_Format, RG11_EAC_Format, InstancedBufferAttribute, InstancedInterleavedBuffer, DataTexture, RGBAFormat, FloatType, DataArrayTexture, FramebufferTexture, LinearMipmapLinearFilter, DepthTexture, Material, LineBasicMaterial, LineDashedMaterial, NoBlending, MeshNormalMaterial, SRGBColorSpace, RenderTarget, BoxGeometry, Mesh, Scene, LinearFilter, CubeCamera, EquirectangularReflectionMapping, EquirectangularRefractionMapping, AddOperation, MixOperation, MultiplyOperation, MeshBasicMaterial, MeshLambertMaterial, MeshPhongMaterial, HalfFloatType, ClampToEdgeWrapping, BufferGeometry, OrthographicCamera, PerspectiveCamera, LinearSRGBColorSpace, CubeUVReflectionMapping, BufferAttribute, MeshStandardMaterial, MeshPhysicalMaterial, MeshToonMaterial, MeshMatcapMaterial, SpriteMaterial, PointsMaterial, ShadowMaterial, Uint32BufferAttribute, Uint16BufferAttribute, ByteType, UnsignedByteType, ShortType, UnsignedShortType, UnsignedShort4444Type, UnsignedShort5551Type, UnsignedInt248Type, UnsignedInt5999Type, UnsignedInt101111Type, NormalBlending, SrcAlphaFactor, OneMinusSrcAlphaFactor, AddEquation, MaterialBlending, Object3D, LinearMipMapLinearFilter, Plane, Float32BufferAttribute, UVMapping, VSMShadowMap, PCFShadowMap, BasicShadowMap, CubeDepthTexture, SphereGeometry, floorPowerOfTwo, LinearMipmapNearestFilter, NearestMipmapLinearFilter, Float16BufferAttribute, yieldToMain, REVISION, ArrayCamera, PlaneGeometry, FrontSide, CustomBlending, ZeroFactor, CylinderGeometry, Quaternion, WebXRController, RAD2DEG, PCFSoftShadowMap, FrustumArray, Frustum, RGBAIntegerFormat, TimestampQuery, createCanvasElement, MaxEquation, MinEquation, ReverseSubtractEquation, SubtractEquation, OneMinusConstantAlphaFactor, ConstantAlphaFactor, OneMinusConstantColorFactor, ConstantColorFactor, OneMinusDstAlphaFactor, OneMinusDstColorFactor, OneMinusSrcColorFactor, DstAlphaFactor, DstColorFactor, SrcAlphaSaturateFactor, SrcColorFactor, OneFactor, CullFaceNone, CullFaceBack, CullFaceFront, MultiplyBlending, SubtractiveBlending, AdditiveBlending, NotEqualDepth, GreaterDepth, GreaterEqualDepth, EqualDepth, LessEqualDepth, LessDepth, AlwaysDepth, NeverDepth, ReversedDepthFuncs, RGB_S3TC_DXT1_Format, RGBA_S3TC_DXT1_Format, RGBA_S3TC_DXT3_Format, RGBA_S3TC_DXT5_Format, RGB_PVRTC_4BPPV1_Format, RGB_PVRTC_2BPPV1_Format, RGBA_PVRTC_4BPPV1_Format, RGBA_PVRTC_2BPPV1_Format, RGB_ETC1_Format, RGB_ETC2_Format, RGBA_ETC2_EAC_Format, R11_EAC_Format, SIGNED_R11_EAC_Format, SIGNED_RG11_EAC_Format, RGBA_ASTC_4x4_Format, RGBA_ASTC_5x4_Format, RGBA_ASTC_5x5_Format, RGBA_ASTC_6x5_Format, RGBA_ASTC_6x6_Format, RGBA_ASTC_8x5_Format, RGBA_ASTC_8x6_Format, RGBA_ASTC_8x8_Format, RGBA_ASTC_10x5_Format, RGBA_ASTC_10x6_Format, RGBA_ASTC_10x8_Format, RGBA_ASTC_10x10_Format, RGBA_ASTC_12x10_Format, RGBA_ASTC_12x12_Format, RGBA_BPTC_Format, RGB_BPTC_SIGNED_Format, RGB_BPTC_UNSIGNED_Format, RED_RGTC1_Format, SIGNED_RED_RGTC1_Format, SIGNED_RED_GREEN_RGTC2_Format, MirroredRepeatWrapping, RepeatWrapping, NearestMipmapNearestFilter, NotEqualCompare, EqualCompare, AlwaysCompare, NeverCompare, LinearTransfer, getByteLength, isTypedArray, NotEqualStencilFunc, GreaterStencilFunc, GreaterEqualStencilFunc, EqualStencilFunc, LessEqualStencilFunc, LessStencilFunc, AlwaysStencilFunc, NeverStencilFunc, DecrementWrapStencilOp, IncrementWrapStencilOp, DecrementStencilOp, IncrementStencilOp, InvertStencilOp, ReplaceStencilOp, ZeroStencilOp, KeepStencilOp, SpotLight, PointLight, DirectionalLight, RectAreaLight, AmbientLight, HemisphereLight, LightProbe, LinearToneMapping, ReinhardToneMapping, CineonToneMapping, ACESFilmicToneMapping, AgXToneMapping, NeutralToneMapping, Group, Loader, FileLoader, MaterialLoader, ObjectLoader } from './three.core.js';
 export { AdditiveAnimationBlendMode, AnimationAction, AnimationClip, AnimationLoader, AnimationMixer, AnimationObjectGroup, AnimationUtils, ArcCurve, ArrowHelper, AttachedBindMode, Audio, AudioAnalyser, AudioContext, AudioListener, AudioLoader, AxesHelper, BasicDepthPacking, BatchedMesh, BezierInterpolant, Bone, BooleanKeyframeTrack, Box2, Box3, Box3Helper, BoxHelper, BufferGeometryLoader, Cache, Camera, CameraHelper, CanvasTexture, CapsuleGeometry, CatmullRomCurve3, CircleGeometry, Clock, ColorKeyframeTrack, CompressedArrayTexture, CompressedCubeTexture, CompressedTexture, CompressedTextureLoader, ConeGeometry, Controls, CubeTextureLoader, CubicBezierCurve, CubicBezierCurve3, CubicInterpolant, CullFaceFrontBack, Curve, CurvePath, CustomToneMapping, Cylindrical, Data3DTexture, DataTextureLoader, DataUtils, DefaultLoadingManager, DetachedBindMode, DirectionalLightHelper, DiscreteInterpolant, DodecahedronGeometry, DynamicCopyUsage, DynamicReadUsage, EdgesGeometry, EllipseCurve, Euler, ExternalTexture, ExtrudeGeometry, Fog, FogExp2, GLBufferAttribute, GLSL1, GLSL3, GridHelper, HTMLTexture, HemisphereLightHelper, IcosahedronGeometry, ImageBitmapLoader, ImageLoader, ImageUtils, InstancedBufferGeometry, InstancedMesh, Int16BufferAttribute, Int32BufferAttribute, Int8BufferAttribute, Interpolant, InterpolateBezier, InterpolateDiscrete, InterpolateLinear, InterpolateSmooth, InterpolationSamplingMode, InterpolationSamplingType, KeyframeTrack, LOD, LatheGeometry, Layers, Light, LightShadow, Line, Line3, LineCurve, LineCurve3, LineLoop, LineSegments, LinearInterpolant, LinearMipMapNearestFilter, LoaderUtils, LoadingManager, LoopOnce, LoopPingPong, LoopRepeat, MOUSE, MeshDepthMaterial, MeshDistanceMaterial, NearestMipMapLinearFilter, NearestMipMapNearestFilter, NormalAnimationBlendMode, NumberKeyframeTrack, OctahedronGeometry, Path, PlaneHelper, PointLightHelper, Points, PolarGridHelper, PolyhedronGeometry, PositionalAudio, PropertyBinding, PropertyMixer, QuadraticBezierCurve, QuadraticBezierCurve3, QuaternionKeyframeTrack, QuaternionLinearInterpolant, RGBADepthPacking, RGBDepthPacking, RGDepthPacking, RawShaderMaterial, Ray, Raycaster, RenderTarget3D, RingGeometry, ShaderMaterial, Shape, ShapeGeometry, ShapePath, ShapeUtils, Skeleton, SkeletonHelper, SkinnedMesh, Source, Spherical, SphericalHarmonics3, SplineCurve, SpotLightHelper, Sprite, StaticCopyUsage, StaticReadUsage, StereoCamera, StreamCopyUsage, StreamDrawUsage, StreamReadUsage, StringKeyframeTrack, TOUCH, TetrahedronGeometry, TextureLoader, TextureSource, TextureUtils, Timer, TorusGeometry, TorusKnotGeometry, Triangle, TriangleFanDrawMode, TriangleStripDrawMode, TrianglesDrawMode, TubeGeometry, Uint8BufferAttribute, Uint8ClampedBufferAttribute, Uniform, UniformsGroup, VectorKeyframeTrack, VideoFrameTexture, VideoTexture, WebGL3DRenderTarget, WebGLArrayRenderTarget, WebGLRenderTarget, WireframeGeometry, WrapAroundEnding, ZeroCurvatureEnding, ZeroSlopeEnding, getConsoleFunction, setConsoleFunction } from './three.core.js';
 
 const refreshUniforms = [
@@ -13369,19 +13369,15 @@ class TextureNode extends UniformNode {
 		const properties = builder.getNodeProperties( this );
 		const textureProperty = super.generate( builder, 'property' );
 
+		if ( output === 'samplerComparison' || properties.compareNode !== null ) {
+
+			// make sure the texture node creates a binding with a comparison sampler if necessary
+
+			this.getSharedNode( builder )._samplerComparison = true;
+
+		}
+
 		if ( /^sampler/.test( output ) ) {
-
-			if ( output === 'samplerComparison' ) {
-
-				this._samplerComparison = true;
-
-				// texture nodes with the same texture share a single uniform so it's
-				// important to set the flag on the node the binding refers to as well
-
-				const sharedNode = this.getSharedNode( builder );
-				sharedNode._samplerComparison = true;
-
-			}
 
 			return textureProperty + '_sampler';
 
@@ -17503,7 +17499,7 @@ class MaterialNode extends Node {
 
 			if ( material.clearcoatRoughnessMap && material.clearcoatRoughnessMap.isTexture === true ) {
 
-				node = clearcoatRoughnessNode.mul( this.getTexture( scope ).r );
+				node = clearcoatRoughnessNode.mul( this.getTexture( scope ).g );
 
 			} else {
 
@@ -23920,7 +23916,7 @@ class CubeRenderTarget extends RenderTarget {
 
 }
 
-const _cache$1 = new WeakMap();
+const _cache$2 = new WeakMap();
 
 /**
  * This node can be used to automatically convert environment maps in the
@@ -24011,9 +24007,9 @@ class CubeMapNode extends TempNode {
 
 					// check for converted cubemap map
 
-					if ( _cache$1.has( texture ) ) {
+					if ( _cache$2.has( texture ) ) {
 
-						const cubeMap = _cache$1.get( texture );
+						const cubeMap = _cache$2.get( texture );
 
 						mapTextureMapping( cubeMap, texture.mapping );
 						this._cubeTexture = cubeMap;
@@ -24032,7 +24028,7 @@ class CubeMapNode extends TempNode {
 							mapTextureMapping( renderTarget.texture, texture.mapping );
 							this._cubeTexture = renderTarget.texture;
 
-							_cache$1.set( texture, renderTarget.texture );
+							_cache$2.set( texture, renderTarget.texture );
 
 							texture.addEventListener( 'dispose', onTextureDispose );
 
@@ -24104,11 +24100,11 @@ function onTextureDispose( event ) {
 
 	texture.removeEventListener( 'dispose', onTextureDispose );
 
-	const renderTarget = _cache$1.get( texture );
+	const renderTarget = _cache$2.get( texture );
 
 	if ( renderTarget !== undefined ) {
 
-		_cache$1.delete( texture );
+		_cache$2.delete( texture );
 
 		renderTarget.dispose();
 
@@ -27642,7 +27638,7 @@ function _getEquirectMaterial( envTexture ) {
 
 }
 
-const _cache = new WeakMap();
+const _cache$1 = new WeakMap();
 
 /**
  * Generates the cubeUV size based on the given image height.
@@ -27674,7 +27670,7 @@ function _generateCubeUVSize( imageHeight ) {
  */
 function _getPMREMFromTexture( texture, renderer, generator ) {
 
-	const cache = _getCache( renderer );
+	const cache = _getCache$1( renderer );
 
 	let cacheTexture = cache.get( texture );
 
@@ -27755,14 +27751,14 @@ function _getPMREMFromTexture( texture, renderer, generator ) {
  * @param {Renderer} renderer - The renderer.
  * @return {WeakMap<Texture, Texture>} The PMREM cache.
  */
-function _getCache( renderer ) {
+function _getCache$1( renderer ) {
 
-	let rendererCache = _cache.get( renderer );
+	let rendererCache = _cache$1.get( renderer );
 
 	if ( rendererCache === undefined ) {
 
 		rendererCache = new WeakMap();
-		_cache.set( renderer, rendererCache );
+		_cache$1.set( renderer, rendererCache );
 
 	}
 
@@ -41794,7 +41790,7 @@ class VelocityNode extends TempNode {
 		super( 'vec2' );
 
 		/**
-		 * The current projection matrix.
+		 * An optional projection matrix that overrides the camera's projection matrix.
 		 *
 		 * @type {?Matrix4}
 		 * @default null
@@ -41826,6 +41822,13 @@ class VelocityNode extends TempNode {
 		this.previousModelWorldMatrix = uniform( new Matrix4() );
 
 		/**
+		 * The projection matrix of the current frame.
+		 *
+		 * @type {UniformNode<mat4>}
+		 */
+		this.currentProjectionMatrix = uniform( new Matrix4() ).setGroup( renderGroup );
+
+		/**
 		 * Uniform node representing the previous projection matrix.
 		 *
 		 * @type {UniformNode<mat4>}
@@ -41839,7 +41842,7 @@ class VelocityNode extends TempNode {
 		 * @type {UniformNode<mat4>}
 		 * @default null
 		 */
-		this.previousCameraViewMatrix = uniform( new Matrix4() );
+		this.previousCameraViewMatrix = uniform( new Matrix4() ).setGroup( renderGroup );
 
 	}
 
@@ -41896,6 +41899,7 @@ class VelocityNode extends TempNode {
 
 			this.previousProjectionMatrix.value.copy( cameraData.previousProjectionMatrix );
 			this.previousCameraViewMatrix.value.copy( cameraData.previousCameraViewMatrix );
+			this.currentProjectionMatrix.value.copy( cameraData.currentProjectionMatrix );
 
 		}
 
@@ -41920,11 +41924,9 @@ class VelocityNode extends TempNode {
 	 */
 	setup( /*builder*/ ) {
 
-		const projectionMatrix = ( this.projectionMatrix === null ) ? cameraProjectionMatrix : uniform( this.projectionMatrix );
-
 		const previousModelViewMatrix = this.previousCameraViewMatrix.mul( this.previousModelWorldMatrix );
 
-		const clipPositionCurrent = projectionMatrix.mul( modelViewMatrix ).mul( positionLocal );
+		const clipPositionCurrent = this.currentProjectionMatrix.mul( modelViewMatrix ).mul( positionLocal );
 		const clipPositionPrevious = this.previousProjectionMatrix.mul( previousModelViewMatrix ).mul( positionPrevious );
 
 		const ndcPositionCurrent = clipPositionCurrent.xy.div( clipPositionCurrent.w );
@@ -51727,6 +51729,632 @@ class NodeBuilderState {
 
 }
 
+// sharp copy of the environment, its mip chain feeds the blur
+const SOURCE_SIZE = 256;
+const SUPERSAMPLING = 4;
+
+// the blurred cube map is sized so sigma spans 1.5 to 3 of its texels, down to this size
+const SIGMA_TEXELS = 3;
+const MIN_SIZE = 16;
+
+// taps at the source texel spacing cover 3.5 sigma, the source level has twice the target's size where available
+const TAP_RADIUS = 12;
+
+// the smallest size blurs too wide for a tangent plane and sums every texel of this source level instead
+const SPHERE_SOURCE_SIZE = 32;
+
+const _defaultCubeTexture = /*@__PURE__*/ new CubeTexture();
+_defaultCubeTexture.isRenderTargetTexture = true;
+
+/**
+ * Blurs an environment map with an angular Gaussian into a cube map, the way a real
+ * blur of the background would look. The result is sized to the blur: from 256 faces
+ * for the finest blur down to 16 for the average of the whole map.
+ *
+ * The renderer uses it for {@link Scene#backgroundBlurriness}.
+ *
+ * @private
+ */
+class CubemapBlurGenerator {
+
+	/**
+	 * Constructs a new cubemap blur generator.
+	 *
+	 * @param {Renderer} renderer - The renderer.
+	 */
+	constructor( renderer ) {
+
+		this._renderer = renderer;
+		this._mesh = new Mesh( new BoxGeometry( 5, 5, 5 ), null );
+		this._cubeCamera = new CubeCamera( 1, 10, null );
+
+		this._source = null;
+		this._sourceTexture = null;
+		this._sourceVersion = -1;
+
+		this._copyPass = null;
+		this._blurPass = null;
+		this._spherePass = null;
+
+	}
+
+	/**
+	 * Blurs an equirectangular, cube or PMREM (cubeUV) texture. Blurriness `1 / 9` gives a
+	 * sigma of 0.9 degrees, every further `1 / 9` doubles it up to the average of the whole
+	 * map at `1`, below `1 / 9` the blur ramps down to sharp.
+	 *
+	 * @param {Texture} texture - The environment texture.
+	 * @param {number} blurriness - The blurriness in the range `[0,1]`.
+	 * @param {?CubeRenderTarget} [renderTarget=null] - A previous result to update, replaced when its size does not fit.
+	 * @return {CubeRenderTarget} The cube render target with the blurred environment.
+	 */
+	fromTexture( texture, blurriness, renderTarget = null ) {
+
+		const renderer = this._renderer;
+
+		const sigma = _getSigma( blurriness );
+		const size = Math.min( Math.max( floorPowerOfTwo( SIGMA_TEXELS * 2 / sigma ), MIN_SIZE ), SOURCE_SIZE );
+
+		if ( renderTarget !== null && renderTarget.width !== size ) {
+
+			renderTarget.dispose();
+			renderTarget = null;
+
+		}
+
+		const target = renderTarget || _createTarget( size );
+
+		const currentMRT = renderer.getMRT();
+		const autoClear = renderer.autoClear;
+
+		renderer.setMRT( null );
+		renderer.autoClear = false;
+
+		this._copy( texture );
+		this._blur( target, sigma );
+
+		renderer.setMRT( currentMRT );
+		renderer.autoClear = autoClear;
+
+		return target;
+
+	}
+
+	/**
+	 * Frees the GPU-related resources allocated by this instance. Call this method whenever this instance is no longer used in your app.
+	 */
+	dispose() {
+
+		if ( this._source !== null ) this._source.dispose();
+		if ( this._copyPass !== null ) this._copyPass.material.dispose();
+		if ( this._blurPass !== null ) this._blurPass.material.dispose();
+		if ( this._spherePass !== null ) this._spherePass.material.dispose();
+
+		this._mesh.geometry.dispose();
+
+	}
+
+	// private interface
+
+	_copy( texture ) {
+
+		if ( this._sourceTexture === texture && this._sourceVersion === texture.pmremVersion ) return;
+
+		if ( this._source === null ) {
+
+			this._source = _createTarget( SOURCE_SIZE, true );
+
+			// allocate the mip chain now, CubeCamera renders all but the last face with mipmaps off
+			this._renderer.initRenderTarget( this._source );
+
+		}
+
+		// the sampler node bakes the source type and orientation into the shader
+		let pass = this._copyPass;
+
+		if ( pass === null || pass.texture !== texture ) {
+
+			if ( pass !== null ) pass.material.dispose();
+
+			pass = this._copyPass = _createCopyPass( texture );
+
+		}
+
+		this._render( pass.material, this._source );
+
+		this._sourceTexture = texture;
+		this._sourceVersion = texture.pmremVersion;
+
+	}
+
+	_blur( target, sigma ) {
+
+		const size = target.width;
+		const sourceSize = Math.min( 2 * size, SOURCE_SIZE );
+
+		// tap spacing is the source texel angle at the face center
+		const spacing = 2 / sourceSize;
+
+		// the taps interpolate the source bilinearly and the background reconstructs the result
+		// with a cubic B-spline, remove the variance both add
+		const texel = 2 / size;
+		const bakeSigma = Math.max( Math.sqrt( Math.max( sigma * sigma - texel * texel / 3 - spacing * spacing / 6, 0 ) ), 0.25 * texel );
+
+		let pass;
+
+		if ( size > MIN_SIZE ) {
+
+			if ( this._blurPass === null ) this._blurPass = _createBlurPass();
+
+			pass = this._blurPass;
+			pass.radius.value = TAP_RADIUS * sourceSize / size;
+			pass.level.value = Math.log2( SOURCE_SIZE / sourceSize );
+			pass.spacing.value = spacing;
+
+		} else {
+
+			if ( this._spherePass === null ) this._spherePass = _createSpherePass();
+
+			pass = this._spherePass;
+
+		}
+
+		pass.envMap.value = this._source.texture;
+		pass.sigma.value = bakeSigma;
+
+		this._render( pass.material, target );
+
+	}
+
+	_render( material, target ) {
+
+		this._mesh.material = material;
+		this._cubeCamera.renderTarget = target;
+		this._cubeCamera.update( this._renderer, this._mesh );
+
+	}
+
+}
+
+// sigma in radians for a blurriness in [ 0, 1 ]
+function _getSigma( blurriness ) {
+
+	const t = blurriness * 9 - 1;
+
+	return ( t < 0 ? Math.max( t + 1, 0 ) : Math.pow( 2, t ) ) / 64;
+
+}
+
+function _createTarget( size, mipmaps = false ) {
+
+	return new CubeRenderTarget( size, {
+		type: HalfFloatType,
+		colorSpace: LinearSRGBColorSpace,
+		minFilter: mipmaps ? LinearMipmapLinearFilter : LinearFilter,
+		magFilter: LinearFilter,
+		generateMipmaps: mipmaps,
+		depthBuffer: false
+	} );
+
+}
+
+function _createMaterial( name ) {
+
+	const material = new NodeMaterial();
+	material.name = name;
+	material.side = BackSide;
+	material.blending = NoBlending;
+	material.depthTest = false;
+	material.depthWrite = false;
+
+	return material;
+
+}
+
+function _createCopyPass( sourceTexture ) {
+
+	// one sampler node for all taps
+	const direction = property( 'vec3', 'sampleDirection' );
+
+	let envMap;
+
+	if ( sourceTexture.isCubeTexture === true ) {
+
+		envMap = cubeTexture( sourceTexture, direction, 0 );
+
+	} else if ( sourceTexture.mapping === CubeUVReflectionMapping ) {
+
+		envMap = pmremTexture( sourceTexture, direction, 0 );
+
+	} else {
+
+		envMap = texture( sourceTexture, equirectUV( direction ), 0 );
+
+	}
+
+	const material = _createMaterial( 'CubemapBlurCopy' );
+
+	material.fragmentNode = Fn( () => {
+
+		// Supersample so sources larger than the copy keep their energy (e.g. small HDR suns).
+		const dx = dFdx( positionWorldDirection ).div( SUPERSAMPLING ).toVar();
+		const dy = dFdy( positionWorldDirection ).div( SUPERSAMPLING ).toVar();
+		const origin = positionWorldDirection.sub( dx.add( dy ).mul( 0.5 * ( SUPERSAMPLING - 1 ) ) ).toVar();
+
+		const color = vec3( 0.0 ).toVar();
+
+		Loop( SUPERSAMPLING, SUPERSAMPLING, ( { i, j } ) => {
+
+			direction.assign( normalize( origin.add( dx.mul( float( i ) ) ).add( dy.mul( float( j ) ) ) ) );
+
+			color.addAssign( envMap.rgb );
+
+		} );
+
+		return vec4( color.div( SUPERSAMPLING * SUPERSAMPLING ), 1.0 );
+
+	} )();
+
+	return { material, texture: sourceTexture };
+
+}
+
+function _createBlurPass() {
+
+	const envMap = cubeTexture( _defaultCubeTexture );
+	const sigma = uniform( 0 );
+	const level = uniform( 0 );
+	const spacing = uniform( 0 );
+	const radius = uniform( 0, 'int' );
+
+	const material = _createMaterial( 'CubemapBlur' );
+
+	material.fragmentNode = Fn( () => {
+
+		const direction = positionWorldDirection;
+
+		const up = select( abs( direction.z ).lessThan( 0.999 ), vec3( 0.0, 0.0, 1.0 ), vec3( 1.0, 0.0, 0.0 ) );
+		const tangent = normalize( cross( up, direction ) ).toVar();
+		const bitangent = cross( direction, tangent ).toVar();
+
+		const k = float( -0.5 ).div( sigma.mul( sigma ) ).toVar();
+
+		const color = vec3( 0.0 ).toVar();
+		const weightSum = float( 0.0 ).toVar();
+
+		// grid of taps on the tangent plane, weighted by the Gaussian of the angle
+		// to the tap and the solid angle its cell covers on the sphere, the uniform
+		// bounds keep the compiler from unrolling the loops
+		const range = { start: radius.negate(), end: radius, condition: '<=' };
+
+		Loop( range, { start: 0, end: radius, condition: '<=' }, ( { i, j } ) => {
+
+			const offset = vec2( float( i ), float( j ) ).mul( spacing ).toVar();
+			const r2 = dot( offset, offset ).toVar();
+
+			const theta = atan( sqrt( r2 ) );
+			const weight = exp( k.mul( theta.mul( theta ) ) ).mul( inverseSqrt( r2.add( 1.0 ).pow( 3.0 ) ) ).toVar();
+
+			const tap = direction.add( tangent.mul( offset.x ) ).add( bitangent.mul( offset.y ) );
+
+			color.addAssign( envMap.sample( tap ).level( level ).rgb.mul( weight ) );
+			weightSum.addAssign( weight );
+
+			// Mirrored taps have the same angle and solid angle, so reuse their weight.
+			If( j.greaterThan( 0 ), () => {
+
+				const mirroredTap = direction.add( tangent.mul( offset.x ) ).sub( bitangent.mul( offset.y ) );
+				color.addAssign( envMap.sample( mirroredTap ).level( level ).rgb.mul( weight ) );
+				weightSum.addAssign( weight );
+
+			} );
+
+		} );
+
+		return vec4( color.div( weightSum ), 1.0 );
+
+	} )();
+
+	return { material, envMap, sigma, level, spacing, radius };
+
+}
+
+function _createSpherePass() {
+
+	const envMap = cubeTexture( _defaultCubeTexture );
+	const sigma = uniform( 0 );
+	const level = Math.log2( SOURCE_SIZE / SPHERE_SOURCE_SIZE );
+	const n = SPHERE_SOURCE_SIZE;
+
+	const material = _createMaterial( 'CubemapBlurSphere' );
+
+	material.fragmentNode = Fn( () => {
+
+		const direction = positionWorldDirection;
+
+		const k = float( -0.5 ).div( sigma.mul( sigma ) ).toVar();
+
+		const color = vec3( 0.0 ).toVar();
+		const weightSum = float( 0.0 ).toVar();
+
+		// Every source texel, paired with its antipode to share the angle and solid angle calculation.
+		Loop( 3 * n * n, ( { i: t } ) => {
+
+			const axis = t.div( n * n ).toVar();
+			const texel = t.sub( axis.mul( n * n ) ).toVar();
+
+			const st = vec2( float( texel.mod( n ) ), float( texel.div( n ) ) ).add( 0.5 ).div( n ).mul( 2.0 ).sub( 1.0 ).toVar();
+
+			const d = select( axis.equal( 0 ), vec3( 1.0, st ), select( axis.equal( 1 ), vec3( st.x, 1.0, st.y ), vec3( st, 1.0 ) ) ).toVar();
+			const r2 = dot( d, d ).toVar();
+			const solidAngle = inverseSqrt( r2.mul( r2 ).mul( r2 ) ).toVar();
+
+			const theta = acos( clamp( dot( direction, d.mul( inverseSqrt( r2 ) ) ), -1, 1.0 ) ).toVar();
+			const weight = exp( k.mul( theta.mul( theta ) ) ).mul( solidAngle ).toVar();
+
+			color.addAssign( envMap.sample( d ).level( level ).rgb.mul( weight ) );
+			weightSum.addAssign( weight );
+
+			theta.assign( float( Math.PI ).sub( theta ) );
+			weight.assign( exp( k.mul( theta.mul( theta ) ) ).mul( solidAngle ) );
+
+			color.addAssign( envMap.sample( d.negate() ).level( level ).rgb.mul( weight ) );
+			weightSum.addAssign( weight );
+
+		} );
+
+		return vec4( color.div( weightSum ), 1.0 );
+
+	} )();
+
+	return { material, envMap, sigma };
+
+}
+
+const _cache = new WeakMap();
+
+// Direction (not normalized) of face coordinates in the getUV convention that may lie past the face
+// edge. The texel grid continues into the neighbouring face at the same texel index along the edge, so
+// coordinates past the edge land on the neighbour's texel centers rather than on the extrapolated face plane.
+const cubeFaceDir = /*@__PURE__*/ Fn( ( [ face, uv ] ) => {
+
+	const st = uv.mul( 2.0 ).sub( 1.0 ).toVar();
+	const over = min$1( max$1( abs( st ).sub( 1.0 ), 0.0 ), 0.75 );
+	st.assign( clamp( st, -1, 1.0 ).div( over.x.oneMinus().mul( over.y.oneMinus() ) ) );
+
+	const d0 = vec3( 1.0, st.y, st.x );
+	const d1 = vec3( st.x.negate(), 1.0, st.y.negate() );
+	const d2 = vec3( st.x.negate(), st.y, 1.0 );
+	const d3 = vec3( -1, st.y, st.x.negate() );
+	const d4 = vec3( st.x.negate(), -1, st.y );
+	const d5 = vec3( st.x, st.y, -1 );
+
+	return select( face.lessThan( 0.5 ), d0, select( face.lessThan( 1.5 ), d1, select( face.lessThan( 2.5 ), d2, select( face.lessThan( 3.5 ), d3, select( face.lessThan( 4.5 ), d4, d5 ) ) ) ) );
+
+} );
+
+/**
+ * Returns the per-renderer generator and cache of blurred cube maps. Render target
+ * textures can't be shared across render contexts.
+ *
+ * @private
+ * @param {Renderer} renderer - The renderer.
+ * @return {{generator: CubemapBlurGenerator, entries: WeakMap<Texture, Object>}} The cache.
+ */
+function _getCache( renderer ) {
+
+	let rendererCache = _cache.get( renderer );
+
+	if ( rendererCache === undefined ) {
+
+		rendererCache = { generator: new CubemapBlurGenerator( renderer ), entries: new WeakMap() };
+		_cache.set( renderer, rendererCache );
+
+	}
+
+	return rendererCache;
+
+}
+
+/**
+ * Blurs the given texture, reusing the previous result while the blurriness and the texture are unchanged.
+ *
+ * @private
+ * @param {Texture} texture - The texture to blur.
+ * @param {number} blurriness - The blurriness in the range `[0,1]`.
+ * @param {Renderer} renderer - The renderer.
+ * @return {?CubeRenderTarget} The render target holding the blurred cube map or `null` if the texture is not ready yet.
+ */
+function _getBlurredCubemap( texture, blurriness, renderer ) {
+
+	const { generator, entries } = _getCache( renderer );
+
+	let entry = entries.get( texture );
+
+	if ( entry === undefined || entry.blurriness !== blurriness || entry.pmremVersion !== texture.pmremVersion ) {
+
+		const image = texture.image;
+		const ready = texture.isCubeTexture ? ( image.length === 6 && ! image.includes( undefined ) ) : ( image && image.height > 0 );
+
+		if ( ! ready ) return null;
+
+		if ( entry === undefined ) {
+
+			entry = { renderTarget: null };
+			entries.set( texture, entry );
+
+			const onDispose = () => {
+
+				texture.removeEventListener( 'dispose', onDispose );
+
+				entries.delete( texture );
+				entry.renderTarget.dispose();
+
+			};
+
+			texture.addEventListener( 'dispose', onDispose );
+
+		}
+
+		entry.renderTarget = generator.fromTexture( texture, blurriness, entry.renderTarget );
+		entry.blurriness = blurriness;
+		entry.pmremVersion = texture.pmremVersion;
+
+	}
+
+	return entry.renderTarget;
+
+}
+
+/**
+ * This node samples an environment map blurred by {@link CubemapBlurGenerator}. The
+ * blur is regenerated whenever {@link CubemapBlurNode#blurriness} changes.
+ *
+ * @augments TempNode
+ */
+class CubemapBlurNode extends TempNode {
+
+	static get type() {
+
+		return 'CubemapBlurNode';
+
+	}
+
+	/**
+	 * Constructs a new cubemap blur node.
+	 *
+	 * @param {Texture} value - The texture to blur.
+	 */
+	constructor( value ) {
+
+		super( 'vec3' );
+
+		/**
+		 * The texture to blur.
+		 *
+		 * @type {Texture}
+		 */
+		this.value = value;
+
+		/**
+		 * The blurriness in the range `[0,1]`, see {@link Scene#backgroundBlurriness}.
+		 *
+		 * @type {number}
+		 * @default 0
+		 */
+		this.blurriness = 0;
+
+		/**
+		 * This flag can be used for type testing.
+		 *
+		 * @type {boolean}
+		 * @readonly
+		 * @default true
+		 */
+		this.isCubemapBlurNode = true;
+
+		const defaultTexture = new CubeTexture();
+		defaultTexture.isRenderTargetTexture = true;
+
+		/**
+		 * The cube texture node sampling the blurred cube map.
+		 *
+		 * @private
+		 * @type {CubeTextureNode}
+		 */
+		this._cubeTextureNode = cubeTexture( defaultTexture );
+
+		/**
+		 * The `updateBeforeType` is set to `NodeUpdateType.RENDER` since the node updates
+		 * the blurred cube map once per render in its {@link CubemapBlurNode#updateBefore} method.
+		 *
+		 * @type {string}
+		 * @default 'render'
+		 */
+		this.updateBeforeType = NodeUpdateType.RENDER;
+
+	}
+
+	updateBefore( frame ) {
+
+		const renderTarget = _getBlurredCubemap( this.value, this.blurriness, frame.renderer );
+
+		if ( renderTarget !== null ) this._cubeTextureNode.value = renderTarget.texture;
+
+	}
+
+	setup( builder ) {
+
+		this.updateBefore( builder );
+
+		const blurMap = this._cubeTextureNode;
+		const uvNode = builder.context.getUV ? builder.context.getUV( blurMap ) : positionWorldDirection;
+
+		// The blurred cube map's texels are only a few sigmas wide, bilinear magnification would show its
+		// grid. Cubic B-spline reconstruction: four bilinear taps with the weights folded into the tap positions.
+		return Fn( () => {
+
+			const size = float( textureSize( blurMap, 0 ).x ).toVar();
+
+			const direction = uvNode.toVar();
+			const face = getFace( direction ).toVar();
+			const uv = getUV( direction, face ).toVar();
+
+			// texel i has its center at p = i
+			const p = uv.mul( size ).sub( 0.5 );
+			const i = floor( p ).toVar();
+			const f = p.sub( i ).toVar();
+
+			// cubic B-spline weights of texels i - 1 .. i + 2
+			const f2 = f.mul( f ).toVar();
+			const f3 = f2.mul( f ).toVar();
+			const w0 = float( 1.0 ).sub( f.mul( 3.0 ) ).add( f2.mul( 3.0 ) ).sub( f3 ).div( 6.0 );
+			const w1 = float( 4.0 ).sub( f2.mul( 6.0 ) ).add( f3.mul( 3.0 ) ).div( 6.0 );
+			const w2 = float( 1.0 ).add( f.mul( 3.0 ) ).add( f2.mul( 3.0 ) ).sub( f3.mul( 3.0 ) ).div( 6.0 );
+			const w3 = f3.div( 6.0 );
+
+			// pair the taps: one bilinear fetch between i - 1 and i, one between i + 1 and i + 2
+			const s0 = w0.add( w1 ).toVar();
+			const s1 = w2.add( w3 ).toVar();
+			const t0 = i.sub( 0.5 ).add( w1.div( s0 ) ).div( size ).toVar();
+			const t1 = i.add( 1.5 ).add( w3.div( s1 ) ).div( size ).toVar();
+
+			const tap = ( t ) => blurMap.sample( cubeFaceDir( face, t ) );
+
+			const color = tap( vec2( t0.x, t0.y ) ).mul( s0.x.mul( s0.y ) )
+				.add( tap( vec2( t1.x, t0.y ) ).mul( s1.x.mul( s0.y ) ) )
+				.add( tap( vec2( t0.x, t1.y ) ).mul( s0.x.mul( s1.y ) ) )
+				.add( tap( vec2( t1.x, t1.y ) ).mul( s1.x.mul( s1.y ) ) ).toVar();
+
+			// the grids of the three faces meeting at a corner disagree within a texel or two, blend to bilinear there
+			const st = abs( uv.mul( 2.0 ).sub( 1.0 ) );
+			const texel = float( 2.0 ).div( size );
+			const corner = smoothstep( texel, texel.mul( 2.0 ), min$1( st.x, st.y ).oneMinus() ).toVar();
+
+			If( corner.lessThan( 1.0 ), () => {
+
+				color.assign( mix( blurMap.sample( direction ), color, corner ) );
+
+			} );
+
+			return color;
+
+		} )();
+
+	}
+
+}
+
+/**
+ * TSL function for creating a cubemap blur node.
+ *
+ * @tsl
+ * @function
+ * @param {Texture} value - The texture to blur.
+ * @returns {CubemapBlurNode}
+ */
+const cubemapBlurTexture = /*@__PURE__*/ nodeProxy( CubemapBlurNode ).setParameterLength( 1 );
+
 /**
  * {@link NodeBuilder} is going to create instances of this class during the build process
  * of nodes. They represent the final shader attributes that are going to be generated
@@ -58404,29 +59032,25 @@ class NodeManager extends DataMap {
 
 			if ( sceneData.background !== background || forceUpdate ) {
 
-				const backgroundNode = this.getCacheNode( 'background', background, () => {
+				const backgroundNode = this.getCacheNode( scene.backgroundBlurriness > 0 ? 'backgroundBlur' : 'background', background, () => {
 
 					if ( background.isCubeTexture === true || ( background.mapping === EquirectangularReflectionMapping || background.mapping === EquirectangularRefractionMapping || background.mapping === CubeUVReflectionMapping ) ) {
 
-						if ( scene.backgroundBlurriness > 0 || background.mapping === CubeUVReflectionMapping ) {
+						if ( scene.backgroundBlurriness > 0 ) {
+
+							return cubemapBlurTexture( background );
+
+						} else if ( background.mapping === CubeUVReflectionMapping ) {
 
 							return pmremTexture( background );
 
+						} else if ( background.isCubeTexture === true ) {
+
+							return cubeMapNode( cubeTexture( background ) );
+
 						} else {
 
-							let envMap;
-
-							if ( background.isCubeTexture === true ) {
-
-								envMap = cubeTexture( background );
-
-							} else {
-
-								envMap = texture( background );
-
-							}
-
-							return cubeMapNode( envMap );
+							return cubeMapNode( texture( background ) );
 
 						}
 
@@ -58445,6 +59069,12 @@ class NodeManager extends DataMap {
 				sceneData.backgroundNode = backgroundNode;
 				sceneData.background = background;
 				sceneData.backgroundBlurriness = scene.backgroundBlurriness;
+
+			}
+
+			if ( sceneData.backgroundNode && sceneData.backgroundNode.isCubemapBlurNode === true ) {
+
+				sceneData.backgroundNode.blurriness = scene.backgroundBlurriness;
 
 			}
 
@@ -91967,4 +92597,4 @@ class ClippingGroup extends Group {
 
 }
 
-export { ACESFilmicToneMapping, AONode, AddEquation, AddOperation, AdditiveBlending, AgXToneMapping, AlphaFormat, AlwaysCompare, AlwaysDepth, AlwaysStencilFunc, AmbientLight, AmbientLightNode, AnalyticLightNode, ArrayCamera, ArrayElementNode, ArrayNode, AssignNode, AtomicFunctionNode, AttributeNode, BackSide, BarrierNode, BasicEnvironmentNode, BasicLightMapNode, BasicShadowMap, BitcastNode, BitcountNode, BlendMode, BoxGeometry, BufferAttribute, BufferAttributeNode, BufferGeometry, BufferNode, BuiltinNode, BumpMapNode, BundleGroup, BypassNode, ByteType, CanvasTarget, CineonToneMapping, ClampToEdgeWrapping, ClippingGroup, ClippingNode, CodeNode, Color, ColorManagement, ColorSpaceNode, Compatibility, ComputeBuiltinNode, ComputeNode, ConditionalNode, ConstNode, ConstantAlphaFactor, ConstantColorFactor, ContextNode, ConvertNode, CubeCamera, CubeDepthTexture, CubeMapNode, CubeReflectionMapping, CubeRefractionMapping, CubeTexture, CubeTextureNode, CubeUVReflectionMapping, CullFaceBack, CullFaceFront, CullFaceNone, CustomBlending, CylinderGeometry, DataArrayTexture, DataTexture, DebugNode, DecrementStencilOp, DecrementWrapStencilOp, DepthFormat, DepthStencilFormat, DepthTexture, DirectRenderPipeline, DirectionalLight, DirectionalLightNode, DoubleSide, DstAlphaFactor, DstColorFactor, DynamicDrawUsage, EnvironmentNode, EqualCompare, EqualDepth, EqualStencilFunc, EquirectangularReflectionMapping, EquirectangularRefractionMapping, EventDispatcher, EventNode, ExpressionNode, FileLoader, FlipNode, Float16BufferAttribute, Float32BufferAttribute, FloatType, FramebufferTexture, FrontFacingNode, FrontSide, Frustum, FrustumArray, FunctionCallNode, FunctionNode, FunctionOverloadingNode, GLSLNodeParser, GreaterCompare, GreaterDepth, GreaterEqualCompare, GreaterEqualDepth, GreaterEqualStencilFunc, GreaterStencilFunc, Group, HalfFloatType, HemisphereLight, HemisphereLightNode, IESSpotLight, IESSpotLightNode, IncrementStencilOp, IncrementWrapStencilOp, IndexNode, IndirectStorageBufferAttribute, InputNode, InspectorBase, InspectorNode, InstancedBufferAttribute, InstancedInterleavedBuffer, IntType, InterleavedBuffer, InterleavedBufferAttribute, InvertStencilOp, IrradianceNode, IsolateNode, JoinNode, KeepStencilOp, LessCompare, LessDepth, LessEqualCompare, LessEqualDepth, LessEqualStencilFunc, LessStencilFunc, LightProbe, LightProbeNode, Lighting, LightingContextNode, LightingModel, LightingNode, LightsNode, Line2NodeMaterial, LineBasicMaterial, LineBasicNodeMaterial, LineDashedMaterial, LineDashedNodeMaterial, LinearFilter, LinearMipMapLinearFilter, LinearMipmapLinearFilter, LinearMipmapNearestFilter, LinearSRGBColorSpace, LinearToneMapping, LinearTransfer, Loader, LoopNode, MRTNode, Material, MaterialBlending, MaterialLoader, MaterialNode, MaterialReferenceNode, MathNode, MathUtils, Matrix2, Matrix3, Matrix4, MaxEquation, MaxMipLevelNode, MemberNode, Mesh, MeshBasicMaterial, MeshBasicNodeMaterial, MeshLambertMaterial, MeshLambertNodeMaterial, MeshMatcapMaterial, MeshMatcapNodeMaterial, MeshNormalMaterial, MeshNormalNodeMaterial, MeshPhongMaterial, MeshPhongNodeMaterial, MeshPhysicalMaterial, MeshPhysicalNodeMaterial, MeshSSSNodeMaterial, MeshStandardMaterial, MeshStandardNodeMaterial, MeshToonMaterial, MeshToonNodeMaterial, MinEquation, MirroredRepeatWrapping, MixOperation, ModelNode, MultiplyBlending, MultiplyOperation, NearestFilter, NearestMipmapLinearFilter, NearestMipmapNearestFilter, NeutralToneMapping, NeverCompare, NeverDepth, NeverStencilFunc, NoBlending, NoColorSpace, NoNormalPacking, NoToneMapping, Node, NodeAccess, NodeAttribute, NodeBuilder, NodeCache, NodeCode, NodeError, NodeFrame, NodeFunctionInput, NodeLoader, NodeMaterial, NodeMaterialLoader, NodeMaterialObserver, NodeObjectLoader, NodeShaderStage, NodeType, NodeUniform, NodeUpdateType, NodeUtils, NodeVar, NodeVarying, NormalBlending, NormalGAPacking, NormalMapNode, NormalRGPacking, NotEqualCompare, NotEqualDepth, NotEqualStencilFunc, Object3D, Object3DNode, ObjectLoader, ObjectSpaceNormalMap, OneFactor, OneMinusConstantAlphaFactor, OneMinusConstantColorFactor, OneMinusDstAlphaFactor, OneMinusDstColorFactor, OneMinusSrcAlphaFactor, OneMinusSrcColorFactor, OperatorNode, OrthographicCamera, OutputStructNode, OverrideContextNode, PCFShadowMap, PCFSoftShadowMap, PMREMGenerator, PMREMNode, PackFloatNode, Packed4x8IntegerNode, ParameterNode, PassNode, PerspectiveCamera, PhongLightingModel, PhysicalLightingModel, Plane, PlaneGeometry, PointLight, PointLightNode, PointShadowNode, PointUVNode, PointsMaterial, PointsNodeMaterial, PostProcessing, ProjectorLight, ProjectorLightNode, PropertyNode, QuadMesh, Quaternion, R11_EAC_Format, RED_GREEN_RGTC2_Format, RED_RGTC1_Format, REVISION, RG11_EAC_Format, RGBAFormat, RGBAIntegerFormat, RGBA_ASTC_10x10_Format, RGBA_ASTC_10x5_Format, RGBA_ASTC_10x6_Format, RGBA_ASTC_10x8_Format, RGBA_ASTC_12x10_Format, RGBA_ASTC_12x12_Format, RGBA_ASTC_4x4_Format, RGBA_ASTC_5x4_Format, RGBA_ASTC_5x5_Format, RGBA_ASTC_6x5_Format, RGBA_ASTC_6x6_Format, RGBA_ASTC_8x5_Format, RGBA_ASTC_8x6_Format, RGBA_ASTC_8x8_Format, RGBA_BPTC_Format, RGBA_ETC2_EAC_Format, RGBA_PVRTC_2BPPV1_Format, RGBA_PVRTC_4BPPV1_Format, RGBA_S3TC_DXT1_Format, RGBA_S3TC_DXT3_Format, RGBA_S3TC_DXT5_Format, RGBFormat, RGBIntegerFormat, RGB_BPTC_SIGNED_Format, RGB_BPTC_UNSIGNED_Format, RGB_ETC1_Format, RGB_ETC2_Format, RGB_PVRTC_2BPPV1_Format, RGB_PVRTC_4BPPV1_Format, RGB_S3TC_DXT1_Format, RGFormat, RGIntegerFormat, RTTNode, RangeNode, ReadbackBuffer, RectAreaLight, RectAreaLightNode, RedFormat, RedIntegerFormat, ReferenceBaseNode, ReferenceElementNode, ReferenceNode, ReflectorNode, ReinhardToneMapping, RenderObjectRefreshType, RenderOutputNode, RenderPipeline, RenderTarget, RendererReferenceNode, RendererUtils, RepeatWrapping, ReplaceStencilOp, ReverseSubtractEquation, RotateNode, SIGNED_R11_EAC_Format, SIGNED_RED_GREEN_RGTC2_Format, SIGNED_RED_RGTC1_Format, SIGNED_RG11_EAC_Format, SRGBColorSpace, SRGBTransfer, SampleNode, Scene, ScreenNode, SetNode, ShadowBaseNode, ShadowMaterial, ShadowNode, ShadowNodeMaterial, ShortType, Sphere, SphereGeometry, SplitNode, SpotLight, SpotLightNode, SpriteMaterial, SpriteNodeMaterial, SrcAlphaFactor, SrcAlphaSaturateFactor, SrcColorFactor, StackNode, StackTrace, StaticDrawUsage, StorageArrayElementNode, StorageBufferAttribute, StorageBufferNode, StorageInstancedBufferAttribute, StorageTexture, StorageTexture3DNode, StorageTextureNode, StructNode, StructTypeNode, SubBuildNode, SubgroupFunctionNode, SubtractEquation, SubtractiveBlending, TSL, TangentSpaceNormalMap, TempNode, Texture, Texture3DNode, TextureNode, TextureSizeNode, TimestampQuery, ToneMappingNode, ToonOutlinePassNode, UVMapping, Uint16BufferAttribute, Uint32BufferAttribute, UniformArrayNode, UniformGroupNode, UniformNode, UnpackFloatNode, UnsignedByteType, UnsignedInt101111Type, UnsignedInt248Type, UnsignedInt5999Type, UnsignedIntType, UnsignedShort4444Type, UnsignedShort5551Type, UnsignedShortType, UserDataNode, VSMShadowMap, VarNode, VaryingNode, Vector2, Vector3, Vector4, VelocityNode, VertexColorNode, ViewportDepthNode, ViewportDepthTextureNode, ViewportSharedTextureNode, ViewportTextureNode, VolumeNodeMaterial, WebGLBackend, WebGLCoordinateSystem, WebGPUBackend, WebGPUCoordinateSystem, WebGPURenderer, WebXRController, WorkgroupInfoNode, ZeroFactor, ZeroStencilOp, createCanvasElement, defaultBuildStages, defaultShaderStages, error, log$1 as log, shaderStages, vectorComponents, warn, warnOnce };
+export { ACESFilmicToneMapping, AONode, AddEquation, AddOperation, AdditiveBlending, AgXToneMapping, AlphaFormat, AlwaysCompare, AlwaysDepth, AlwaysStencilFunc, AmbientLight, AmbientLightNode, AnalyticLightNode, ArrayCamera, ArrayElementNode, ArrayNode, AssignNode, AtomicFunctionNode, AttributeNode, BackSide, BarrierNode, BasicEnvironmentNode, BasicLightMapNode, BasicShadowMap, BitcastNode, BitcountNode, BlendMode, BoxGeometry, BufferAttribute, BufferAttributeNode, BufferGeometry, BufferNode, BuiltinNode, BumpMapNode, BundleGroup, BypassNode, ByteType, CanvasTarget, CineonToneMapping, ClampToEdgeWrapping, ClippingGroup, ClippingNode, CodeNode, Color, ColorManagement, ColorSpaceNode, Compatibility, ComputeBuiltinNode, ComputeNode, ConditionalNode, ConstNode, ConstantAlphaFactor, ConstantColorFactor, ContextNode, ConvertNode, CubeCamera, CubeDepthTexture, CubeMapNode, CubeReflectionMapping, CubeRefractionMapping, CubeTexture, CubeTextureNode, CubeUVReflectionMapping, CubemapBlurNode, CullFaceBack, CullFaceFront, CullFaceNone, CustomBlending, CylinderGeometry, DataArrayTexture, DataTexture, DebugNode, DecrementStencilOp, DecrementWrapStencilOp, DepthFormat, DepthStencilFormat, DepthTexture, DirectRenderPipeline, DirectionalLight, DirectionalLightNode, DoubleSide, DstAlphaFactor, DstColorFactor, DynamicDrawUsage, EnvironmentNode, EqualCompare, EqualDepth, EqualStencilFunc, EquirectangularReflectionMapping, EquirectangularRefractionMapping, EventDispatcher, EventNode, ExpressionNode, FileLoader, FlipNode, Float16BufferAttribute, Float32BufferAttribute, FloatType, FramebufferTexture, FrontFacingNode, FrontSide, Frustum, FrustumArray, FunctionCallNode, FunctionNode, FunctionOverloadingNode, GLSLNodeParser, GreaterCompare, GreaterDepth, GreaterEqualCompare, GreaterEqualDepth, GreaterEqualStencilFunc, GreaterStencilFunc, Group, HalfFloatType, HemisphereLight, HemisphereLightNode, IESSpotLight, IESSpotLightNode, IncrementStencilOp, IncrementWrapStencilOp, IndexNode, IndirectStorageBufferAttribute, InputNode, InspectorBase, InspectorNode, InstancedBufferAttribute, InstancedInterleavedBuffer, IntType, InterleavedBuffer, InterleavedBufferAttribute, InvertStencilOp, IrradianceNode, IsolateNode, JoinNode, KeepStencilOp, LessCompare, LessDepth, LessEqualCompare, LessEqualDepth, LessEqualStencilFunc, LessStencilFunc, LightProbe, LightProbeNode, Lighting, LightingContextNode, LightingModel, LightingNode, LightsNode, Line2NodeMaterial, LineBasicMaterial, LineBasicNodeMaterial, LineDashedMaterial, LineDashedNodeMaterial, LinearFilter, LinearMipMapLinearFilter, LinearMipmapLinearFilter, LinearMipmapNearestFilter, LinearSRGBColorSpace, LinearToneMapping, LinearTransfer, Loader, LoopNode, MRTNode, Material, MaterialBlending, MaterialLoader, MaterialNode, MaterialReferenceNode, MathNode, MathUtils, Matrix2, Matrix3, Matrix4, MaxEquation, MaxMipLevelNode, MemberNode, Mesh, MeshBasicMaterial, MeshBasicNodeMaterial, MeshLambertMaterial, MeshLambertNodeMaterial, MeshMatcapMaterial, MeshMatcapNodeMaterial, MeshNormalMaterial, MeshNormalNodeMaterial, MeshPhongMaterial, MeshPhongNodeMaterial, MeshPhysicalMaterial, MeshPhysicalNodeMaterial, MeshSSSNodeMaterial, MeshStandardMaterial, MeshStandardNodeMaterial, MeshToonMaterial, MeshToonNodeMaterial, MinEquation, MirroredRepeatWrapping, MixOperation, ModelNode, MultiplyBlending, MultiplyOperation, NearestFilter, NearestMipmapLinearFilter, NearestMipmapNearestFilter, NeutralToneMapping, NeverCompare, NeverDepth, NeverStencilFunc, NoBlending, NoColorSpace, NoNormalPacking, NoToneMapping, Node, NodeAccess, NodeAttribute, NodeBuilder, NodeCache, NodeCode, NodeError, NodeFrame, NodeFunctionInput, NodeLoader, NodeMaterial, NodeMaterialLoader, NodeMaterialObserver, NodeObjectLoader, NodeShaderStage, NodeType, NodeUniform, NodeUpdateType, NodeUtils, NodeVar, NodeVarying, NormalBlending, NormalGAPacking, NormalMapNode, NormalRGPacking, NotEqualCompare, NotEqualDepth, NotEqualStencilFunc, Object3D, Object3DNode, ObjectLoader, ObjectSpaceNormalMap, OneFactor, OneMinusConstantAlphaFactor, OneMinusConstantColorFactor, OneMinusDstAlphaFactor, OneMinusDstColorFactor, OneMinusSrcAlphaFactor, OneMinusSrcColorFactor, OperatorNode, OrthographicCamera, OutputStructNode, OverrideContextNode, PCFShadowMap, PCFSoftShadowMap, PMREMGenerator, PMREMNode, PackFloatNode, Packed4x8IntegerNode, ParameterNode, PassNode, PerspectiveCamera, PhongLightingModel, PhysicalLightingModel, Plane, PlaneGeometry, PointLight, PointLightNode, PointShadowNode, PointUVNode, PointsMaterial, PointsNodeMaterial, PostProcessing, ProjectorLight, ProjectorLightNode, PropertyNode, QuadMesh, Quaternion, R11_EAC_Format, RED_GREEN_RGTC2_Format, RED_RGTC1_Format, REVISION, RG11_EAC_Format, RGBAFormat, RGBAIntegerFormat, RGBA_ASTC_10x10_Format, RGBA_ASTC_10x5_Format, RGBA_ASTC_10x6_Format, RGBA_ASTC_10x8_Format, RGBA_ASTC_12x10_Format, RGBA_ASTC_12x12_Format, RGBA_ASTC_4x4_Format, RGBA_ASTC_5x4_Format, RGBA_ASTC_5x5_Format, RGBA_ASTC_6x5_Format, RGBA_ASTC_6x6_Format, RGBA_ASTC_8x5_Format, RGBA_ASTC_8x6_Format, RGBA_ASTC_8x8_Format, RGBA_BPTC_Format, RGBA_ETC2_EAC_Format, RGBA_PVRTC_2BPPV1_Format, RGBA_PVRTC_4BPPV1_Format, RGBA_S3TC_DXT1_Format, RGBA_S3TC_DXT3_Format, RGBA_S3TC_DXT5_Format, RGBFormat, RGBIntegerFormat, RGB_BPTC_SIGNED_Format, RGB_BPTC_UNSIGNED_Format, RGB_ETC1_Format, RGB_ETC2_Format, RGB_PVRTC_2BPPV1_Format, RGB_PVRTC_4BPPV1_Format, RGB_S3TC_DXT1_Format, RGFormat, RGIntegerFormat, RTTNode, RangeNode, ReadbackBuffer, RectAreaLight, RectAreaLightNode, RedFormat, RedIntegerFormat, ReferenceBaseNode, ReferenceElementNode, ReferenceNode, ReflectorNode, ReinhardToneMapping, RenderObjectRefreshType, RenderOutputNode, RenderPipeline, RenderTarget, RendererReferenceNode, RendererUtils, RepeatWrapping, ReplaceStencilOp, ReverseSubtractEquation, RotateNode, SIGNED_R11_EAC_Format, SIGNED_RED_GREEN_RGTC2_Format, SIGNED_RED_RGTC1_Format, SIGNED_RG11_EAC_Format, SRGBColorSpace, SRGBTransfer, SampleNode, Scene, ScreenNode, SetNode, ShadowBaseNode, ShadowMaterial, ShadowNode, ShadowNodeMaterial, ShortType, Sphere, SphereGeometry, SplitNode, SpotLight, SpotLightNode, SpriteMaterial, SpriteNodeMaterial, SrcAlphaFactor, SrcAlphaSaturateFactor, SrcColorFactor, StackNode, StackTrace, StaticDrawUsage, StorageArrayElementNode, StorageBufferAttribute, StorageBufferNode, StorageInstancedBufferAttribute, StorageTexture, StorageTexture3DNode, StorageTextureNode, StructNode, StructTypeNode, SubBuildNode, SubgroupFunctionNode, SubtractEquation, SubtractiveBlending, TSL, TangentSpaceNormalMap, TempNode, Texture, Texture3DNode, TextureNode, TextureSizeNode, TimestampQuery, ToneMappingNode, ToonOutlinePassNode, UVMapping, Uint16BufferAttribute, Uint32BufferAttribute, UniformArrayNode, UniformGroupNode, UniformNode, UnpackFloatNode, UnsignedByteType, UnsignedInt101111Type, UnsignedInt248Type, UnsignedInt5999Type, UnsignedIntType, UnsignedShort4444Type, UnsignedShort5551Type, UnsignedShortType, UserDataNode, VSMShadowMap, VarNode, VaryingNode, Vector2, Vector3, Vector4, VelocityNode, VertexColorNode, ViewportDepthNode, ViewportDepthTextureNode, ViewportSharedTextureNode, ViewportTextureNode, VolumeNodeMaterial, WebGLBackend, WebGLCoordinateSystem, WebGPUBackend, WebGPUCoordinateSystem, WebGPURenderer, WebXRController, WorkgroupInfoNode, ZeroFactor, ZeroStencilOp, createCanvasElement, defaultBuildStages, defaultShaderStages, error, log$1 as log, shaderStages, vectorComponents, warn, warnOnce };
