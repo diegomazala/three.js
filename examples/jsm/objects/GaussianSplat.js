@@ -976,8 +976,10 @@ function createMaterialNodes( buffers, sort, localCameraPosition ) {
 
 		const axis2 = vec2( axis1.y.negate(), axis1.x ).toVar( 'axis2' );
 
-		const scale1 = min( sqrt( lambda1 ), MAX_SCREEN_SPACE_SPLAT_SIZE ).toVar( 'scale1' );
-		const scale2 = min( sqrt( lambda2 ), MAX_SCREEN_SPACE_SPLAT_SIZE ).toVar( 'scale2' );
+		// Clamp both axes by the same factor so capped splats keep their aspect ratio.
+		const radiusScale = min( 1, float( MAX_SCREEN_SPACE_SPLAT_SIZE ).div( sqrt( lambda1 ) ) ).toVar( 'radiusScale' );
+		const scale1 = sqrt( lambda1 ).mul( radiusScale ).toVar( 'scale1' );
+		const scale2 = sqrt( lambda2 ).mul( radiusScale ).toVar( 'scale2' );
 		const offsetPixels = axis1.mul( positionGeometry.x ).mul( scale1 ).add( axis2.mul( positionGeometry.y ).mul( scale2 ) ).toVar( 'offsetPixels' );
 		const offsetNdc = offsetPixels.mul( 2 ).div( cameraViewport.zw ).toVar( 'offsetNdc' );
 		const clip = centerClip.add( vec4( offsetNdc.mul( centerClip.w ), 0, 0 ) ).toVar( 'clip' );
