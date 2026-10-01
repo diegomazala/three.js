@@ -456,7 +456,7 @@ class GaussianSplat extends Mesh {
 
 		const radius = this.boundingSphere.radius * Math.max( _worldScale.x, _worldScale.y, _worldScale.z );
 		const depth = - _viewCenter.z;
-		const nearDepth = Math.max( camera.near, depth - radius );
+		const nearDepth = depth - radius;
 		const farDepth = Math.max( nearDepth + 0.0001, depth + radius );
 
 		_sortDepthRange.set( nearDepth, farDepth );
